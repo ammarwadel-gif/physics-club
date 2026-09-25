@@ -3,61 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Club — Explore</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Explore Our System — BS Physics Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--maxw:1180px;}
+:root{
+  --bg:#311432;--bg-2:#3D1A42;--bg-3:#4A2250;--line:#4A2250;
+  --text:#E8E5EA;--text-soft:#B8A9BD;--white:#FFFFFF;
+  --amber:#C97A1F;--teal:#1F6E64;--teal-soft:#DCEBE8;
+  --radius-s:4px;--radius-m:8px;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+  --maxw:1180px;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:600;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--white);}
+p{margin:0;}
 
-header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
-.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;flex:none;}
-.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
-.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
-nav.primary{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
-nav.primary a{padding:8px 11px;border-radius:var(--radius-s);font-size:0.88rem;font-weight:500;color:var(--ink-soft);transition:all .15s;}
-nav.primary a:hover{background:var(--surface);color:var(--ink);}
-.nav-right{display:flex;align-items:center;gap:8px;}
-.user-chip{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;padding:6px 10px;background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius-s);}
+/* ============ HEADER ============ */
+header.site{position:sticky;top:0;z-index:100;background:rgba(49,20,50,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:72px;gap:12px;}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--white);}
+.brand img{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:contain;border:2px solid rgba(201,122,31,0.4);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.05em;color:var(--text-soft);margin-top:2px;text-transform:uppercase;}
+nav.primary{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+nav.primary a{padding:9px 14px;border-radius:var(--radius-s);font-size:0.9rem;font-weight:500;color:var(--text-soft);transition:all .15s;white-space:nowrap;}
+nav.primary a:hover{background:var(--bg-2);color:var(--white);}
+nav.primary a.active{background:var(--bg-2);color:var(--white);box-shadow:inset 0 -2px 0 var(--amber);}
+.user-chip{display:flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--amber);padding:7px 12px;background:rgba(201,122,31,0.15);border:1px solid var(--amber);border-radius:var(--radius-s);}
 @media (max-width:1080px){nav.primary{display:none;}}
 
-.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
-.detail-hero h1{font-size:2.1rem;margin-top:10px;}
-.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
-.section{padding:60px 0;}
-.section-tight{padding:44px 0;background:var(--surface);border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-@media (max-width:760px){.grid-2,.grid-3{grid-template-columns:1fr;}}
-.card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:22px;}
-.card h3{font-size:1.15rem;margin-bottom:10px;}
-.card p,.card li{color:var(--ink-soft);font-size:0.92rem;}
-.card ul{padding-left:18px;margin-top:10px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 20px;border-radius:var(--radius-s);font-size:0.9rem;font-weight:600;border:1px solid var(--ink);background:transparent;color:var(--ink);margin-top:14px;cursor:pointer;font-family:inherit;transition:all .15s;}
-.btn:hover{background:var(--ink);color:var(--paper);}
-.grade-badge{display:inline-block;font-family:var(--mono);font-size:0.7rem;padding:3px 8px;border-radius:20px;background:var(--amber-soft);color:var(--amber);margin-bottom:10px;font-weight:600;}
+/* ============ PAGE HERO ============ */
+.page-hero{padding:60px 0 40px;border-bottom:1px solid var(--line);}
+.page-hero h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin-bottom:16px;}
+.page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:680px;}
+.breadcrumbs{font-size:0.85rem;color:var(--text-soft);margin-bottom:16px;}
+.breadcrumbs a:hover{color:var(--amber);}
+.breadcrumbs span{margin:0 8px;opacity:0.5;}
 
-footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:50px 0 24px;}
-footer.site-footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;}
-footer.site-footer h4{color:#fff;font-family:var(--sans);font-size:0.83rem;margin-bottom:12px;}
-footer.site-footer .fbrand{font-family:var(--serif);font-size:1.25rem;color:#fff;font-weight:700;}
-footer.site-footer p{color:#9AA2C0;font-size:0.85rem;margin-top:10px;}
-footer.site-footer a{display:block;color:#B7BEDA;font-size:0.85rem;padding:5px 0;}
-footer.site-footer a:hover{color:#fff;}
-footer.site-footer .fbottom{border-top:1px solid #333C63;margin-top:36px;padding-top:18px;font-size:0.78rem;color:#7C84A6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-@media (max-width:760px){footer.site-footer .fgrid{grid-template-columns:1fr 1fr;}}
+/* ============ SECTIONS ============ */
+.section{padding:60px 0;}
+.section-head{margin-bottom:36px;}
+.section-head h2{font-size:1.9rem;margin-bottom:8px;}
+.section-head p{color:var(--text-soft);font-size:0.98rem;max-width:600px;}
+
+/* ============ SYSTEM CARDS ============ */
+.sys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.sys-card{
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  padding:32px 28px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:all .2s;
+  position:relative;overflow:hidden;
+}
+.sys-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--teal));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.sys-card:hover{border-color:var(--amber);transform:translateY(-4px);}
+.sys-card:hover::before{transform:scaleX(1);}
+.sys-icon{font-size:2.2rem;margin-bottom:6px;display:block;}
+.sys-card h3{font-size:1.25rem;margin-bottom:4px;}
+.sys-card .sys-tagline{
+  font-family:var(--mono);font-size:0.72rem;color:var(--amber);
+  letter-spacing:0.08em;text-transform:uppercase;font-weight:500;
+}
+.sys-card p{color:var(--text-soft);font-size:0.92rem;flex:1;line-height:1.7;}
+.sys-card .sys-link{
+  font-size:0.88rem;font-weight:600;color:var(--amber);
+  display:inline-flex;align-items:center;gap:6px;
+  transition:gap .15s;
+}
+.sys-card:hover .sys-link{gap:10px;}
+
+/* ============ STEPS ============ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;}
+@media (max-width:760px){.steps{grid-template-columns:1fr;}}
+.step-card{
+  background:var(--bg-2);border:1px solid var(--line);
+  border-radius:var(--radius-m);padding:26px 24px;
+}
+.step-num{
+  display:inline-block;font-family:var(--mono);font-size:0.72rem;
+  color:var(--amber);background:rgba(201,122,31,0.12);
+  padding:4px 12px;border-radius:20px;margin-bottom:12px;font-weight:600;
+  letter-spacing:0.08em;
+}
+.step-card h3{font-size:1.1rem;margin-bottom:8px;}
+.step-card p{color:var(--text-soft);font-size:0.9rem;line-height:1.7;}
+
+/* ============ FOOTER ============ */
+footer.site-footer{background:#240F26;color:var(--text-soft);padding:50px 0 26px;border-top:1px solid var(--line);}
+footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;}
+@media (max-width:760px){footer .fgrid{grid-template-columns:1fr 1fr;}}
+@media (max-width:480px){footer .fgrid{grid-template-columns:1fr;}}
+footer h4{color:var(--white);font-family:var(--sans);font-size:0.85rem;font-weight:600;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase;}
+footer .fbrand{font-family:var(--serif);font-size:1.35rem;color:var(--white);font-weight:700;}
+footer p{font-size:0.88rem;margin-top:12px;max-width:300px;}
+footer a{display:block;color:var(--text-soft);font-size:0.88rem;padding:5px 0;transition:color .15s;}
+footer a:hover{color:var(--amber);}
+footer .fbottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-size:0.82rem;color:#7A657C;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 </style>
 </head>
 <body>
 
 <header class="site">
   <div class="wrap nav-row">
-    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Academic ecosystem</small></span></a>
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="BS Physics Club" onerror="this.style.display='none'">
+      <span>BS Physics Club<small>Academic Ecosystem</small></span>
+    </a>
     <nav class="primary">
       <a href="index.html">Home</a>
       <a href="learning.html">Learning Hub</a>
@@ -67,35 +128,97 @@ footer.site-footer .fbottom{border-top:1px solid #333C63;margin-top:36px;padding
       <a href="about.html">About</a>
       <a href="profile.html">Profile</a>
     </nav>
-    <div class="nav-right"><a href="login.html" id="adminChip" class="user-chip" style="display:none;"><i class="fas fa-user-shield"></i> <span id="adminName">Admin</span></a></div>
+    <div class="nav-right">
+      <a href="login.html" id="adminChip" class="user-chip" style="display:none;">
+        <i class="fas fa-user-shield"></i> <span id="adminName">Admin</span>
+      </a>
+    </div>
   </div>
 </header>
 
-<section class="detail-hero"><div class="wrap">
-  <div class="breadcrumbs"><a href="index.html">Home</a> / Explore</div>
-  <h1>Explore the Physics Club ecosystem</h1>
-  <p style="color:var(--ink-soft);max-width:660px;margin-top:14px;">A complete guide to what this site offers and how the sections connect.</p>
-</div></section>
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Explore Our System</div>
+    <h1>Explore Our System</h1>
+    <p>A complete guide to the BS Physics Club academic ecosystem — what each section does, and how to make the most of your journey here.</p>
+  </div>
+</section>
 
 <section class="section">
   <div class="wrap">
-    <h2 style="margin-bottom:20px;">What you'll find here</h2>
-    <div class="grid-2">
-      <div class="card"><h3>📚 Learning Hub</h3><p>Split into two parts:</p><ul><li><strong>Your Curriculum</strong> — pick your grade (10 or 11), then check off units.</li><li><strong>Learning Journey</strong> — resources beyond the standard curriculum.</li></ul><a href="learning.html" class="btn">Open Learning Hub →</a></div>
-      <div class="card"><h3>🔬 Research Hub</h3><p>Clickable sections covering:</p><ul><li>Academic & Scientific Writing</li><li>Introduction to Research</li><li>Literature Review</li><li>Data Analysis</li><li>Experimental Methods</li></ul><a href="research.html" class="btn">Open Research Hub →</a></div>
-      <div class="card"><h3>🏆 Competitions</h3><p>Sorted into three scopes:</p><ul><li><strong>International</strong> — olympiads and global contests</li><li><strong>National</strong> — country-wide exams</li><li><strong>Local</strong> — regional events</li></ul><a href="competitions.html" class="btn">Browse →</a></div>
-      <div class="card"><h3>🎓 Programs</h3><p>Seasonal academic tracks run by the club.</p><a href="programs.html" class="btn">See programs →</a></div>
+    <div class="section-head">
+      <h2>What you'll find here</h2>
+      <p>Five connected pillars carry a student from first principles to independent research and international competition.</p>
+    </div>
+
+    <div class="sys-grid">
+
+      <a href="learning.html" class="sys-card">
+        <span class="sys-icon">📚</span>
+        <span class="sys-tagline">Pillar 01</span>
+        <h3>Learning Hub</h3>
+        <p>Structured physics content organized by grade and semester. Each Learning Objective comes with sessions, files, and quizzes to test your understanding — all tracked with a personal checklist.</p>
+        <span class="sys-link">Open Learning Hub <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <a href="research.html" class="sys-card">
+        <span class="sys-icon">🔬</span>
+        <span class="sys-tagline">Pillar 02</span>
+        <h3>Research Hub</h3>
+        <p>A growing library of research topics. Every topic holds session recordings, reference files, and practical tasks to help you move from reading papers to conducting your own investigation.</p>
+        <span class="sys-link">Explore Research <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <a href="competitions.html" class="sys-card">
+        <span class="sys-icon">🏆</span>
+        <span class="sys-tagline">Pillar 03</span>
+        <h3>Competitions</h3>
+        <p>A searchable database of physics competitions — filtered by scope (International, National, Local), with eligibility, deadlines, and preparation resources for each one.</p>
+        <span class="sys-link">Browse Competitions <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <a href="programs.html" class="sys-card">
+        <span class="sys-icon">🎓</span>
+        <span class="sys-tagline">Pillar 04</span>
+        <h3>Programs</h3>
+        <p>Seasonal academic tracks run by the club — competition prep, research mentorship, computational physics workshops, and more. Each program has its own timeline and application process.</p>
+        <span class="sys-link">View Programs <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <a href="about.html" class="sys-card">
+        <span class="sys-icon">🌍</span>
+        <span class="sys-tagline">Pillar 05</span>
+        <h3>Community & About</h3>
+        <p>Who we are, what we stand for, and the academic pillars that guide everything we build. Meet the community behind BS Physics Club.</p>
+        <span class="sys-link">Read About Us <i class="fas fa-arrow-right"></i></span>
+      </a>
+
     </div>
   </div>
 </section>
 
-<section class="section-tight">
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <h2 style="margin-bottom:20px;">How to get started</h2>
-    <div class="grid-3">
-      <div class="card"><span class="grade-badge">Step 1</span><h3>Open the Learning Hub</h3><p>Choose your grade and mark off the units you've studied.</p></div>
-      <div class="card"><span class="grade-badge">Step 2</span><h3>Pick a competition</h3><p>Browse by scope. Check eligibility and deadlines.</p></div>
-      <div class="card"><span class="grade-badge">Step 3</span><h3>Join a program</h3><p>Apply to a seasonal program for mentor guidance.</p></div>
+    <div class="section-head">
+      <h2>How to get started</h2>
+      <p>Three simple steps to begin your journey through the ecosystem.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <span class="step-num">STEP 01</span>
+        <h3>Open the Learning Hub</h3>
+        <p>Pick your grade and semester, then browse the Learning Objectives. Track your progress with the built-in checklist as you complete sessions.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">STEP 02</span>
+        <h3>Pick a competition or program</h3>
+        <p>Browse competitions by scope or explore seasonal programs. Each one lists eligibility, deadlines, and application steps.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">STEP 03</span>
+        <h3>Start researching</h3>
+        <p>Dive into the Research Hub to explore sessions, files, and tasks on topics that interest you — from scientific writing to data analysis.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -103,18 +226,53 @@ footer.site-footer .fbottom{border-top:1px solid #333C63;margin-top:36px;padding
 <footer class="site-footer">
   <div class="wrap">
     <div class="fgrid">
-      <div><div class="fbrand">Physics Club</div><p>A student-run academic ecosystem.</p></div>
-      <div><h4>Quick links</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="learning.html">Learning Hub</a><a href="research.html">Research</a></div>
-      <div><h4>More</h4><a href="competitions.html">Competitions</a><a href="programs.html">Programs</a><a href="explore.html">Explore</a><a href="profile.html">Profile</a></div>
-      <div><h4>Follow us</h4><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">LinkedIn</a><a href="#">YouTube</a></div>
+      <div>
+        <div class="fbrand">BS Physics Club</div>
+        <p>A student-run academic ecosystem for learning, research, experimentation, and competition.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="learning.html">Learning Hub</a>
+        <a href="research.html">Research</a>
+      </div>
+      <div>
+        <h4>More</h4>
+        <a href="competitions.html">Competitions</a>
+        <a href="programs.html">Programs</a>
+        <a href="explore.html">Explore</a>
+        <a href="profile.html">Profile</a>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">YouTube</a>
+      </div>
     </div>
-    <div class="fbottom"><span>© <span id="year"></span> Physics Club.</span></div>
+    <div class="fbottom">
+      <span>© <span id="year"></span> BS Physics Club. All rights reserved.</span>
+      <span>Built by students, for students.</span>
+    </div>
   </div>
 </footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-try{const s=sessionStorage.getItem('pc_session');if(s){const u=JSON.parse(s);if(u&&u.role==='admin'){document.getElementById('adminChip').style.display='flex';document.getElementById('adminChip').href='admin.html';document.getElementById('adminName').textContent=u.name||u.username;}}}catch(e){}
+try{
+  const s = sessionStorage.getItem('pc_session');
+  if(s){
+    const u = JSON.parse(s);
+    if(u && u.role==='admin'){
+      document.getElementById('adminChip').style.display='flex';
+      document.getElementById('adminChip').href='admin.html';
+      document.getElementById('adminName').textContent = u.name || u.username;
+    }
+  }
+}catch(e){}
 </script>
 </body>
 </html>

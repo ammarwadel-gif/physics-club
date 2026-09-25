@@ -3,74 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Club — Admin Panel</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Admin Panel — BS Physics Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--teal-soft:#DCEBE8;--red:#9B3B34;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--maxw:1180px;}
+:root{
+  --bg:#311432;--bg-2:#3D1A42;--bg-3:#4A2250;--line:#4A2250;
+  --text:#E8E5EA;--text-soft:#B8A9BD;--white:#FFFFFF;
+  --amber:#C97A1F;--teal:#1F6E64;--red:#C4453A;
+  --radius-s:4px;--radius-m:8px;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+  --maxw:1180px;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;}
+input,select,textarea{font-family:inherit;font-size:0.9rem;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:600;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--white);}
+p{margin:0;}
 
-header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
-.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;}
-.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
-.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
-nav.primary{display:flex;gap:2px;flex-wrap:wrap;}
-nav.primary a{padding:8px 11px;font-size:0.88rem;font-weight:500;color:var(--ink-soft);}
-nav.primary a:hover{color:var(--ink);}
+header.site{position:sticky;top:0;z-index:100;background:rgba(49,20,50,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:72px;gap:12px;}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--white);}
+.brand img{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:contain;border:2px solid rgba(201,122,31,0.4);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.05em;color:var(--text-soft);margin-top:2px;text-transform:uppercase;}
+nav.primary{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+nav.primary a{padding:9px 14px;border-radius:var(--radius-s);font-size:0.9rem;font-weight:500;color:var(--text-soft);transition:all .15s;}
+nav.primary a:hover{background:var(--bg-2);color:var(--white);}
 @media (max-width:1080px){nav.primary{display:none;}}
 
-.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
-.detail-hero h1{font-size:2.1rem;margin-top:10px;}
-.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
-.section{padding:44px 0;}
-.admin-banner{background:var(--amber-soft);border:1px solid var(--amber);color:#7A4B12;padding:12px 16px;border-radius:var(--radius-m);font-size:0.85rem;margin-bottom:24px;}
-.admin-tabs{display:flex;gap:6px;border-bottom:1px solid var(--line-strong);margin-bottom:26px;flex-wrap:wrap;}
-.admin-tab{padding:10px 14px;font-size:0.85rem;font-weight:600;color:var(--ink-soft);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;}
-.admin-tab.active{color:var(--ink);border-bottom-color:var(--amber);}
-.card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:22px;}
-.admin-list-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
-.admin-list-row:last-child{border-bottom:none;}
-.admin-list-row .info h4{font-size:0.93rem;}
-.admin-list-row .info p{font-size:0.78rem;color:var(--ink-faint);margin-top:3px;}
-.admin-list-actions{display:flex;gap:8px;flex:none;}
+.page-hero{padding:50px 0 36px;border-bottom:1px solid var(--line);}
+.page-hero h1{font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.1;margin-bottom:14px;}
+.page-hero p{color:var(--text-soft);font-size:1rem;max-width:680px;}
+.breadcrumbs{font-size:0.85rem;color:var(--text-soft);margin-bottom:14px;}
+.breadcrumbs a:hover{color:var(--amber);}
+.breadcrumbs span{margin:0 8px;opacity:0.5;}
 
-.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:var(--radius-s);font-size:0.83rem;font-weight:600;border:1px solid transparent;transition:all .15s;cursor:pointer;font-family:inherit;}
-.btn-primary{background:var(--ink);color:var(--paper);}
-.btn-primary:hover{background:#2A3563;}
-.btn-outline{background:transparent;color:var(--ink);border-color:var(--ink);}
-.btn-outline:hover{background:var(--ink);color:var(--paper);}
-.btn-danger{background:transparent;color:var(--red);border-color:var(--red);}
-.btn-danger:hover{background:var(--red);color:#fff;}
-.btn-sm{padding:7px 12px;font-size:0.78rem;}
+.section{padding:40px 0;}
 
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 68px);padding:40px 20px;}
-.login-card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:40px;max-width:440px;width:100%;}
-.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-.login-field label{font-size:0.82rem;font-weight:600;}
-.login-field input{font-family:var(--sans);font-size:0.92rem;padding:11px 13px;border-radius:var(--radius-s);border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);}
-.login-msg{font-size:0.85rem;padding:10px 12px;border-radius:var(--radius-s);margin-bottom:14px;display:none;}
-.login-msg.err{display:block;background:#FAEAE8;color:var(--red);border:1px solid var(--red);}
+.admin-banner{
+  background:rgba(201,122,31,0.12);border:1px solid var(--amber);
+  color:#E8C79A;padding:14px 18px;border-radius:var(--radius-m);
+  font-size:0.88rem;margin-bottom:26px;
+  display:flex;align-items:center;gap:10px;
+}
+.admin-banner i{color:var(--amber);}
 
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.admin-tabs{
+  display:flex;gap:4px;border-bottom:1px solid var(--line);
+  margin-bottom:28px;flex-wrap:wrap;
+}
+.admin-tab{
+  padding:11px 16px;font-size:0.85rem;font-weight:600;
+  color:var(--text-soft);border-bottom:2px solid transparent;
+  margin-bottom:-1px;background:none;transition:all .15s;
+}
+.admin-tab.active{color:var(--white);border-bottom-color:var(--amber);}
+.admin-tab:hover:not(.active){color:var(--text);}
+
+.card{
+  background:var(--bg-2);border:1px solid var(--line);
+  border-radius:var(--radius-m);padding:24px;margin-bottom:20px;
+}
+.card h3{font-size:1.05rem;margin-bottom:16px;}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .form-grid.full{grid-template-columns:1fr;}
-.form-grid input,.form-grid select,.form-grid textarea{padding:10px;border:1px solid var(--line-strong);border-radius:var(--radius-s);font-family:var(--sans);font-size:0.88rem;background:var(--paper);color:var(--ink);}
-.form-grid textarea{grid-column:1/-1;min-height:60px;font-family:var(--mono);font-size:0.82rem;}
 .form-grid .full-row{grid-column:1/-1;}
 @media (max-width:640px){.form-grid{grid-template-columns:1fr;}}
+.form-grid input,.form-grid select,.form-grid textarea{
+  padding:11px 14px;border-radius:var(--radius-s);
+  border:1px solid var(--line);background:var(--bg);color:var(--text);
+  width:100%;
+}
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus{
+  outline:none;border-color:var(--amber);
+}
+.form-grid textarea{min-height:70px;resize:vertical;}
 
-footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 18px;border-radius:var(--radius-s);
+  font-size:0.85rem;font-weight:600;transition:all .15s;
+}
+.btn-primary{background:var(--amber);color:#fff;}
+.btn-primary:hover{background:#B06A15;}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--line);}
+.btn-outline:hover{border-color:var(--amber);color:var(--white);}
+.btn-danger{background:transparent;color:var(--red);border:1px solid var(--red);}
+.btn-danger:hover{background:var(--red);color:#fff;}
+.btn-sm{padding:7px 14px;font-size:0.78rem;}
+
+.admin-list-row{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;padding:14px 0;border-bottom:1px solid var(--line);
+}
+.admin-list-row:last-child{border-bottom:none;}
+.admin-list-row .info h4{font-size:0.95rem;color:var(--white);}
+.admin-list-row .info p{font-size:0.78rem;color:var(--text-soft);margin-top:3px;}
+.admin-list-actions{display:flex;gap:8px;flex:none;}
+
+.login-wrap{
+  display:flex;align-items:center;justify-content:center;
+  min-height:calc(100vh - 72px);padding:40px 20px;
+}
+.login-card{
+  background:var(--bg-2);border:1px solid var(--line);
+  border-radius:var(--radius-m);padding:44px 40px;
+  max-width:440px;width:100%;
+}
+.login-card h2{font-size:1.6rem;margin-bottom:10px;}
+.login-card p.help{color:var(--text-soft);font-size:0.9rem;margin-bottom:26px;}
+.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.login-field label{font-size:0.82rem;font-weight:600;color:var(--text);}
+.login-field input{
+  padding:12px 14px;border-radius:var(--radius-s);
+  border:1px solid var(--line);background:var(--bg);color:var(--text);
+}
+.login-field input:focus{outline:none;border-color:var(--amber);}
+.login-msg{font-size:0.88rem;padding:11px 14px;border-radius:var(--radius-s);margin-bottom:14px;display:none;}
+.login-msg.err{display:block;background:rgba(196,69,58,0.15);color:#E8907C;border:1px solid var(--red);}
+.login-btn{width:100%;justify-content:center;padding:13px;font-size:0.95rem;}
+
+.empty-state{
+  padding:36px 24px;text-align:center;color:var(--text-soft);
+  border:1px dashed var(--line);border-radius:var(--radius-m);
+  background:rgba(49,20,50,0.4);font-size:0.9rem;
+}
+
+.help-note{
+  font-size:0.8rem;color:var(--text-soft);margin-top:6px;
+  font-style:italic;
+}
+
+footer.site-footer{background:#240F26;color:var(--text-soft);padding:36px 0 24px;border-top:1px solid var(--line);text-align:center;font-size:0.85rem;}
 </style>
 </head>
 <body>
 
 <header class="site">
   <div class="wrap nav-row">
-    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Admin Panel</small></span></a>
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="BS Physics Club" onerror="this.style.display='none'">
+      <span>BS Physics Club<small>Admin Panel</small></span>
+    </a>
     <nav class="primary">
       <a href="index.html">Home</a>
       <a href="learning.html">Learning Hub</a>
@@ -85,70 +163,87 @@ footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:3
 
 <div id="app"></div>
 
-<footer class="site-footer">© <span id="year"></span> Physics Club — Admin Panel</footer>
+<footer class="site-footer">
+  <div class="wrap">© <span id="year"></span> BS Physics Club — Admin Panel</div>
+</footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const KEYS = { users:'pc_users', session:'pc_session', resources:'pc_resources', competitions:'pc_competitions', programs:'pc_programs', curriculum:'pc_curriculum', journey:'pc_journey', research:'pc_research', settings:'pc_settings' };
+const KEYS = {
+  users:'pc_users', session:'pc_session',
+  resources:'pc_resources',
+  competitions:'pc_competitions', programs:'pc_programs',
+  curriculum:'pc_curriculum_sem', learningContent:'pc_learning_content',
+  researchTopics:'pc_research_topics', researchContent:'pc_research_content',
+  settings:'pc_settings'
+};
 
 const DEFAULT_USERS = [
   { username:'admin', password:'physics2026', name:'Main Admin', role:'admin' },
   { username:'mazen', password:'mazen123', name:'Mazen', role:'admin' },
   { username:'ahmed', password:'ahmed456', name:'Ahmed', role:'admin' },
 ];
-const DEFAULT_RESOURCES = [
-  {id:'r1', title:"Newton's Laws", unit:'Mechanics', grade:10, date:'2026-08-28', desc:'Foundational walkthrough.'},
-  {id:'r2', title:'Circuits & Kirchhoff', unit:'Electricity', grade:11, date:'2026-08-20', desc:'Notes on networks.'},
-];
-const DEFAULT_COMPS = [
-  {id:'c1', name:'International Physics Olympiad', scope:'International', type:'Olympiad', grade:'11–12', difficulty:'Advanced', status:'open', deadline:'2027-01-15'},
-];
-const DEFAULT_PROGS = [
-  {id:'p1', name:'Competition Prep Track', status:'open', category:'current', grade:'11–12', deadline:'2026-10-05', desc:'Season-long training.'},
-];
+
 const DEFAULT_CURRICULUM = {
-  10: [
-    {id:'g10_1', name:'Mechanics', desc:'Kinematics, Newton\'s laws.'},
-    {id:'g10_2', name:'Waves & Sound', desc:'Wave properties.'},
-    {id:'g10_3', name:'Electricity Basics', desc:'Ohm\'s law.'},
-    {id:'g10_4', name:'Optics', desc:'Reflection & refraction.'},
-    {id:'g10_5', name:'Heat & Thermodynamics', desc:'Temperature.'},
-  ],
-  11: [
-    {id:'g11_1', name:'Electromagnetism', desc:'Fields.'},
-    {id:'g11_2', name:'Modern Physics', desc:'Photoelectric effect.'},
-    {id:'g11_3', name:'Quantum Mechanics Intro', desc:'Wave-particle duality.'},
-    {id:'g11_4', name:'Mathematical Physics', desc:'Vectors.'},
-    {id:'g11_5', name:'Advanced Optics', desc:'Interference.'},
-  ]
+  "g10-s1": { grade:10, semester:1, items:[
+    {id:"g10s1_1", title:"Units and Measurements"},
+    {id:"g10s1_2", title:"Motion in a Straight Line"},
+    {id:"g10s1_3", title:"Motion in a Plane"},
+    {id:"g10s1_4", title:"Laws of Motion"},
+    {id:"g10s1_5", title:"Work, Energy and Power"},
+    {id:"g10s1_6", title:"System of Particles & Rotational Motion"},
+    {id:"g10s1_7", title:"Gravitation"},
+  ]},
+  "g10-s2": { grade:10, semester:2, items:[
+    {id:"g10s2_1", title:"Mechanical Properties of Solids"},
+    {id:"g10s2_2", title:"Mechanical Properties of Fluids"},
+    {id:"g10s2_3", title:"Thermal Properties of Matter"},
+    {id:"g10s2_4", title:"Thermodynamics"},
+  ]},
+  "g11-s1": { grade:11, semester:1, items:[
+    {id:"g11s1_1", title:"Electric Charges and Fields"},
+    {id:"g11s1_2", title:"Electrostatic Potential and Capacitance"},
+    {id:"g11s1_3", title:"Current Electricity"},
+    {id:"g11s1_4", title:"Moving Charges and Magnetism"},
+    {id:"g11s1_5", title:"Magnetism and Matter"},
+    {id:"g11s1_6", title:"Electromagnetic Induction"},
+    {id:"g11s1_7", title:"Alternating Current"},
+  ]},
+  "g11-s2": { grade:11, semester:2, items:[
+    {id:"g11s2_1", title:"Electromagnetic Waves"},
+    {id:"g11s2_2", title:"Ray Optics and Optical Instruments"},
+    {id:"g11s2_3", title:"Wave Optics"},
+    {id:"g11s2_4", title:"Dual Nature of Radiation and Matter"},
+  ]},
 };
-const DEFAULT_JOURNEY = [
-  {unit:'Olympiad Prep', title:'Mechanics Olympiad Problems', desc:'Advanced.'},
-  {unit:'Astrophysics', title:'Stellar Physics Intro', desc:'Stars.'},
+
+const DEFAULT_TOPICS = [
+  {key:'academic-writing', icon:'✍️', title:'Academic & Scientific Writing', desc:'Structure papers, write abstracts, cite properly.'},
+  {key:'intro-research', icon:'🔎', title:'Introduction to Research', desc:'What research is and how to formulate questions.'},
+  {key:'literature-review', icon:'📚', title:'Literature Review', desc:'Find, read, and synthesize prior research.'},
+  {key:'data-analysis', icon:'📊', title:'Data Analysis', desc:'Tools for analyzing experimental data.'},
+  {key:'experimental-methods', icon:'🧪', title:'Experimental Methods', desc:'Lab safety, measurement, error analysis.'},
 ];
-const DEFAULT_RESEARCH = [
-  {key:'academic-writing', icon:'✍️', title:'Academic & Scientific Writing', desc:'Structure, abstracts, citations.'},
-  {key:'intro-research', icon:'🔎', title:'Introduction to Research', desc:'What research is.'},
-  {key:'literature-review', icon:'📚', title:'Literature Review', desc:'Find and read papers.'},
-  {key:'data-analysis', icon:'📊', title:'Data Analysis', desc:'Python, MATLAB, Excel.'},
-  {key:'experimental-methods', icon:'🧪', title:'Experimental Methods', desc:'Labs, safety, errors.'},
+
+const DEFAULT_PROGRAMS = [
+  {id:'p1', name:'Competition Prep Track', status:'open', category:'current', grade:'11–12', deadline:'2026-10-05', desc:'Season-long olympiad training.'},
+  {id:'p2', name:'Physics Research Program', status:'open', category:'current', grade:'10–12', deadline:'2026-10-20', desc:'Introduction to research methodology.'},
 ];
+
 const DEFAULT_SETTINGS = {
-  clubName:'Physics Club',
-  heroSubtitle:'Explore. Learn. Research. Compete.',
-  heroDesc:'A structured academic ecosystem built by students.',
+  clubName:'BS Physics Club',
   logo:'logo.jpeg',
   fb:'#', ig:'#', tt:'#', li:'#', yt:'#'
 };
 
 function load(key, fb){
   try{ const raw = localStorage.getItem(key); if(raw) return JSON.parse(raw); }catch(e){}
-  localStorage.setItem(key, JSON.stringify(fb));
   return JSON.parse(JSON.stringify(fb));
 }
 function save(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
 function genId(p){ return p+'_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function esc(s){ return (s==null?'':s.toString()).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 let currentUser = null;
 try{ const s = sessionStorage.getItem(KEYS.session); if(s) currentUser = JSON.parse(s); }catch(e){}
@@ -157,13 +252,13 @@ try{ const s = sessionStorage.getItem(KEYS.session); if(s) currentUser = JSON.pa
 function renderLogin(){
   document.getElementById('app').innerHTML = `
     <div class="login-wrap"><div class="login-card">
-      <h2 style="font-size:1.5rem;margin-bottom:8px;">Admin sign in</h2>
-      <p style="color:var(--ink-soft);font-size:0.88rem;margin-bottom:24px;">Enter your credentials to access the admin panel.</p>
+      <h2>Admin sign in</h2>
+      <p class="help">Enter your credentials to access the content management panel.</p>
       <div class="login-msg" id="msg"></div>
       <form id="loginForm">
-        <div class="login-field"><label>Username</label><input type="text" name="username" required></div>
-        <div class="login-field"><label>Password</label><input type="password" name="password" required></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Sign in</button>
+        <div class="login-field"><label>Username</label><input type="text" name="username" required autocomplete="username"></div>
+        <div class="login-field"><label>Password</label><input type="password" name="password" required autocomplete="current-password"></div>
+        <button type="submit" class="btn btn-primary login-btn">Sign in</button>
       </form>
     </div></div>`;
   document.getElementById('loginForm').addEventListener('submit', e=>{
@@ -183,32 +278,36 @@ function renderLogin(){
 }
 
 /* ============ ADMIN LAYOUT ============ */
-let adminTab = 'resources';
+let adminTab = 'curriculum';
+
+const TABS = [
+  {key:'curriculum', label:'📘 Curriculum'},
+  {key:'learning', label:'🎥 Learning Content'},
+  {key:'research', label:'🔬 Research Topics'},
+  {key:'researchContent', label:'📂 Research Content'},
+  {key:'competitions', label:'🏆 Competitions'},
+  {key:'programs', label:'🎓 Programs'},
+  {key:'users', label:'👤 Admins'},
+  {key:'settings', label:'⚙️ Settings'},
+];
 
 function renderAdmin(){
   document.getElementById('app').innerHTML = `
-    <section class="detail-hero"><div class="wrap">
-      <div class="breadcrumbs"><a href="index.html">Home</a> / Admin</div>
+    <section class="page-hero"><div class="wrap">
+      <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Admin Panel</div>
       <h1>Admin Panel</h1>
-      <p style="color:var(--ink-soft);margin-top:10px;">Welcome, ${currentUser.name||currentUser.username}. Full control over all content.</p>
-      <button class="btn btn-danger btn-sm" id="logoutBtn" style="margin-top:14px;">Log out</button>
+      <p>Welcome, ${esc(currentUser.name||currentUser.username)}. Full control over all site content.</p>
+      <button class="btn btn-danger btn-sm" id="logoutBtn" style="margin-top:16px;">Log out</button>
     </div></section>
     <section class="section"><div class="wrap">
-      <div class="admin-banner">You're signed in as admin. Changes save to this browser's localStorage.</div>
+      <div class="admin-banner"><i class="fas fa-shield-alt"></i> You're signed in as admin. All changes save locally and appear immediately on this site.</div>
       <div class="admin-tabs">
-        <button class="admin-tab active" data-tab="resources">📚 Resources</button>
-        <button class="admin-tab" data-tab="competitions">🏆 Competitions</button>
-        <button class="admin-tab" data-tab="programs">🎓 Programs</button>
-        <button class="admin-tab" data-tab="curriculum">📘 Curriculum</button>
-        <button class="admin-tab" data-tab="journey">🚀 Journey</button>
-        <button class="admin-tab" data-tab="research">🔬 Research</button>
-        <button class="admin-tab" data-tab="users">👤 Admins</button>
-        <button class="admin-tab" data-tab="settings">⚙️ Settings</button>
+        ${TABS.map(t=>`<button class="admin-tab ${adminTab===t.key?'active':''}" data-tab="${t.key}">${t.label}</button>`).join('')}
       </div>
       <div id="panel"></div>
     </div></section>`;
   document.getElementById('logoutBtn').addEventListener('click', ()=>{
-    sessionStorage.removeItem(KEYS.session); currentUser = null; location.href='index.html';
+    sessionStorage.removeItem(KEYS.session); currentUser=null; location.href='index.html';
   });
   document.querySelectorAll('.admin-tab').forEach(t=> t.addEventListener('click', ()=>{
     adminTab = t.dataset.tab;
@@ -220,221 +319,351 @@ function renderAdmin(){
 
 function paintPanel(){
   const p = document.getElementById('panel');
-  if(adminTab==='resources') p.innerHTML = renderResources();
-  else if(adminTab==='competitions') p.innerHTML = renderComps();
-  else if(adminTab==='programs') p.innerHTML = renderProgs();
-  else if(adminTab==='curriculum') p.innerHTML = renderCurriculum();
-  else if(adminTab==='journey') p.innerHTML = renderJourney();
-  else if(adminTab==='research') p.innerHTML = renderResearch();
-  else if(adminTab==='users') p.innerHTML = renderUsers();
-  else if(adminTab==='settings') p.innerHTML = renderSettings();
+  if(adminTab==='curriculum') p.innerHTML = renderCurriculumTab();
+  else if(adminTab==='learning') p.innerHTML = renderLearningTab();
+  else if(adminTab==='research') p.innerHTML = renderResearchTab();
+  else if(adminTab==='researchContent') p.innerHTML = renderResearchContentTab();
+  else if(adminTab==='competitions') p.innerHTML = renderCompetitionsTab();
+  else if(adminTab==='programs') p.innerHTML = renderProgramsTab();
+  else if(adminTab==='users') p.innerHTML = renderUsersTab();
+  else if(adminTab==='settings') p.innerHTML = renderSettingsTab();
   bindPanelEvents();
 }
 
-/* ============ RESOURCES ============ */
-function renderResources(){
-  const items = load(KEYS.resources, DEFAULT_RESOURCES);
-  return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add resource</h3>
-      <form id="formAdd" class="form-grid">
-        <input name="title" placeholder="Title" required>
-        <input name="unit" placeholder="Unit / topic">
-        <input name="grade" placeholder="Grade (10/11/12)">
-        <input name="type" placeholder="Type (Notes/Video)">
-        <textarea name="desc" placeholder="Short description"></textarea>
-        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
-      </form>
-    </div>
-    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Resources (${items.length})</h3>
-      ${items.map(r=>`<div class="admin-list-row"><div class="info"><h4>${r.title}</h4><p>${r.unit||''} · Grade ${r.grade||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${r.id}" data-type="resources">Delete</button></div></div>`).join('')}
-    </div>`;
-}
-
-/* ============ COMPETITIONS ============ */
-function renderComps(){
-  const items = load(KEYS.competitions, DEFAULT_COMPS);
-  return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add competition</h3>
-      <form id="formAdd" class="form-grid">
-        <input name="name" placeholder="Name" required>
-        <select name="scope"><option>International</option><option>National</option><option>Local</option></select>
-        <input name="type" placeholder="Type (Olympiad/Exam)">
-        <input name="grade" placeholder="Grade">
-        <input name="deadline" type="date">
-        <select name="status"><option value="open">Open</option><option value="soon">Soon</option><option value="closed">Closed</option></select>
-        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
-      </form>
-    </div>
-    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Competitions (${items.length})</h3>
-      ${items.map(c=>`<div class="admin-list-row"><div class="info"><h4>${c.name}</h4><p>${c.scope} · ${c.type||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${c.id}" data-type="competitions">Delete</button></div></div>`).join('')}
-    </div>`;
-}
-
-/* ============ PROGRAMS ============ */
-function renderProgs(){
-  const items = load(KEYS.programs, DEFAULT_PROGS);
-  return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add program</h3>
-      <form id="formAdd" class="form-grid">
-        <input name="name" placeholder="Name" required>
-        <select name="category"><option value="current">Current</option><option value="upcoming">Upcoming</option><option value="past">Past</option></select>
-        <input name="grade" placeholder="Grade">
-        <input name="deadline" type="date">
-        <textarea name="desc" placeholder="Description"></textarea>
-        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
-      </form>
-    </div>
-    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Programs (${items.length})</h3>
-      ${items.map(p=>`<div class="admin-list-row"><div class="info"><h4>${p.name}</h4><p>${p.category}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${p.id}" data-type="programs">Delete</button></div></div>`).join('')}
-    </div>`;
-}
-
-/* ============ CURRICULUM ============ */
-function renderCurriculum(){
+/* ============ TAB: CURRICULUM ============ */
+function renderCurriculumTab(){
   const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
+  const groups = [
+    {key:'g10-s1', label:'Grade 10 · Semester 1'},
+    {key:'g10-s2', label:'Grade 10 · Semester 2'},
+    {key:'g11-s1', label:'Grade 11 · Semester 1'},
+    {key:'g11-s2', label:'Grade 11 · Semester 2'},
+  ];
   return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add curriculum item</h3>
-      <form id="formAdd" class="form-grid">
-        <select name="grade"><option value="10">Grade 10</option><option value="11">Grade 11</option></select>
-        <input name="name" placeholder="Unit name" required>
-        <textarea name="desc" placeholder="Short description"></textarea>
+    <div class="card">
+      <h3>Add Learning Objective</h3>
+      <form id="formCurriculum" class="form-grid">
+        <select name="group" required>
+          ${groups.map(g=>`<option value="${g.key}">${g.label}</option>`).join('')}
+        </select>
+        <input name="title" placeholder="LO title (e.g. Units and Measurements)" required>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add LO</button>
+      </form>
+    </div>
+    ${groups.map(g=>{
+      const items = curr[g.key]?.items || [];
+      return `
+        <div class="card">
+          <h3>${g.label} (${items.length})</h3>
+          ${items.length ? items.map(it=>`
+            <div class="admin-list-row">
+              <div class="info"><h4>${esc(it.title)}</h4></div>
+              <div class="admin-list-actions">
+                <button class="btn btn-danger btn-sm" data-del="${it.id}" data-type="curriculum" data-group="${g.key}">Delete</button>
+              </div>
+            </div>
+          `).join('') : `<p class="help-note">No LOs yet.</p>`}
+        </div>`;
+    }).join('')}
+  `;
+}
+
+/* ============ TAB: LEARNING CONTENT ============ */
+function renderLearningTab(){
+  const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
+  const content = load(KEYS.learningContent, {});
+  const allLOs = [];
+  Object.keys(curr).forEach(k=>{
+    (curr[k].items||[]).forEach(it=> allLOs.push({...it, group:k}));
+  });
+  return `
+    <div class="card">
+      <h3>Upload to a Learning Objective</h3>
+      <p class="help-note" style="margin-bottom:14px;">Choose an LO, then add videos, files, or quizzes to it.</p>
+      <form id="formLearning" class="form-grid">
+        <select name="loId" required class="full-row">
+          <option value="">-- Choose a Learning Objective --</option>
+          ${allLOs.map(lo=>`<option value="${lo.id}">[${lo.group}] ${esc(lo.title)}</option>`).join('')}
+        </select>
+        <select name="kind" required>
+          <option value="videos">📹 Video</option>
+          <option value="files">📄 File</option>
+          <option value="quizzes">❓ Quiz</option>
+        </select>
+        <input name="title" placeholder="Title / name" required>
+        <input name="url" placeholder="URL (optional)" class="full-row">
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add resource</button>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Existing content</h3>
+      ${allLOs.map(lo=>{
+        const c = content[lo.id] || {videos:[],files:[],quizzes:[]};
+        const total = (c.videos?.length||0) + (c.files?.length||0) + (c.quizzes?.length||0);
+        if(!total) return '';
+        return `
+          <div style="margin-bottom:18px;">
+            <h4 style="font-size:0.95rem;color:var(--white);margin-bottom:6px;">${esc(lo.title)}</h4>
+            ${['videos','files','quizzes'].map(kind=>{
+              const items = c[kind]||[];
+              if(!items.length) return '';
+              const icons = {videos:'fa-video', files:'fa-file', quizzes:'fa-question-circle'};
+              return items.map((item,i)=>`
+                <div class="admin-list-row" style="padding:8px 0;">
+                  <div class="info" style="display:flex;align-items:center;gap:8px;">
+                    <i class="fas ${icons[kind]}" style="color:var(--amber);font-size:0.85rem;"></i>
+                    <span style="font-size:0.88rem;">${esc(item.title)}</span>
+                  </div>
+                  <div class="admin-list-actions">
+                    <button class="btn btn-danger btn-sm" data-del="${i}" data-type="learningContent" data-lo="${lo.id}" data-kind="${kind}">Delete</button>
+                  </div>
+                </div>
+              `).join('');
+            }).join('')}
+          </div>`;
+      }).join('') || '<p class="help-note">No content uploaded yet.</p>'}
+    </div>
+  `;
+}
+
+/* ============ TAB: RESEARCH TOPICS ============ */
+function renderResearchTab(){
+  const topics = load(KEYS.researchTopics, DEFAULT_TOPICS);
+  return `
+    <div class="card">
+      <h3>Add research topic</h3>
+      <form id="formResearch" class="form-grid">
+        <input name="icon" placeholder="Icon (emoji)" value="📄">
+        <input name="title" placeholder="Topic title" required>
+        <textarea name="desc" placeholder="Short description" class="full-row"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add topic</button>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Existing topics (${topics.length})</h3>
+      ${topics.map(t=>`
+        <div class="admin-list-row">
+          <div class="info"><h4>${esc(t.icon||'')} ${esc(t.title)}</h4><p>${esc(t.desc||'')}</p></div>
+          <div class="admin-list-actions">
+            <button class="btn btn-danger btn-sm" data-del="${t.key}" data-type="researchTopics">Delete</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ============ TAB: RESEARCH CONTENT ============ */
+function renderResearchContentTab(){
+  const topics = load(KEYS.researchTopics, DEFAULT_TOPICS);
+  const content = load(KEYS.researchContent, {});
+  return `
+    <div class="card">
+      <h3>Upload to a research topic</h3>
+      <p class="help-note" style="margin-bottom:14px;">Add sessions, files, or tasks to any topic.</p>
+      <form id="formResearchContent" class="form-grid">
+        <select name="topicKey" required class="full-row">
+          <option value="">-- Choose a topic --</option>
+          ${topics.map(t=>`<option value="${t.key}">${t.icon||''} ${esc(t.title)}</option>`).join('')}
+        </select>
+        <select name="kind" required>
+          <option value="sessions">🎥 Session</option>
+          <option value="files">📄 File</option>
+          <option value="tasks">✅ Task</option>
+        </select>
+        <input name="title" placeholder="Title" required>
+        <input name="url" placeholder="URL (optional)" class="full-row">
         <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
       </form>
     </div>
     <div class="card">
-      <h3 style="font-size:1.05rem;margin-bottom:8px;">Grade 10 (${(curr[10]||[]).length})</h3>
-      ${(curr[10]||[]).map(it=>`<div class="admin-list-row"><div class="info"><h4>${it.name}</h4><p>${it.desc||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${it.id}" data-type="curriculum" data-grade="10">Delete</button></div></div>`).join('')}
+      <h3>Existing content</h3>
+      ${topics.map(t=>{
+        const c = content[t.key] || {sessions:[],files:[],tasks:[]};
+        const total = (c.sessions?.length||0)+(c.files?.length||0)+(c.tasks?.length||0);
+        if(!total) return '';
+        const icons = {sessions:'fa-play', files:'fa-file', tasks:'fa-check-square'};
+        return `
+          <div style="margin-bottom:18px;">
+            <h4 style="font-size:0.95rem;color:var(--white);margin-bottom:6px;">${t.icon||''} ${esc(t.title)}</h4>
+            ${['sessions','files','tasks'].map(kind=>{
+              const items = c[kind]||[];
+              if(!items.length) return '';
+              return items.map((item,i)=>`
+                <div class="admin-list-row" style="padding:8px 0;">
+                  <div class="info" style="display:flex;align-items:center;gap:8px;">
+                    <i class="fas ${icons[kind]}" style="color:var(--amber);font-size:0.85rem;"></i>
+                    <span style="font-size:0.88rem;">${esc(item.title)}</span>
+                  </div>
+                  <div class="admin-list-actions">
+                    <button class="btn btn-danger btn-sm" data-del="${i}" data-type="researchContent" data-topic="${t.key}" data-kind="${kind}">Delete</button>
+                  </div>
+                </div>
+              `).join('');
+            }).join('')}
+          </div>`;
+      }).join('') || '<p class="help-note">No content uploaded yet.</p>'}
     </div>
-    <div class="card" style="margin-top:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:8px;">Grade 11 (${(curr[11]||[]).length})</h3>
-      ${(curr[11]||[]).map(it=>`<div class="admin-list-row"><div class="info"><h4>${it.name}</h4><p>${it.desc||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${it.id}" data-type="curriculum" data-grade="11">Delete</button></div></div>`).join('')}
-    </div>`;
+  `;
 }
 
-/* ============ JOURNEY ============ */
-function renderJourney(){
-  const items = load(KEYS.journey, DEFAULT_JOURNEY);
+/* ============ TAB: COMPETITIONS ============ */
+function renderCompetitionsTab(){
+  const comps = load(KEYS.competitions, []);
   return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add journey item</h3>
-      <form id="formAdd" class="form-grid">
-        <input name="unit" placeholder="Unit / category" required>
-        <input name="title" placeholder="Title" required>
-        <textarea name="desc" placeholder="Description"></textarea>
-        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+    <div class="card">
+      <h3>Add competition</h3>
+      <form id="formCompetitions" class="form-grid">
+        <input name="name" placeholder="Name" required>
+        <select name="scope"><option>International</option><option>National</option><option>Local</option></select>
+        <input name="type" placeholder="Type (Olympiad / Exam / Fair)">
+        <input name="grade" placeholder="Grade range (e.g. 11–12)">
+        <select name="difficulty"><option>Core</option><option>Intermediate</option><option>Advanced</option></select>
+        <select name="status"><option value="open">Open</option><option value="soon">Coming soon</option><option value="closed">Closed</option></select>
+        <input name="deadline" type="date">
+        <textarea name="eligibility" placeholder="Eligibility" class="full-row"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add competition</button>
       </form>
     </div>
-    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Journey items (${items.length})</h3>
-      ${items.map(it=>`<div class="admin-list-row"><div class="info"><h4>${it.title}</h4><p>${it.unit}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${it.id||it.title}" data-type="journey">Delete</button></div></div>`).join('')}
-    </div>`;
+    <div class="card">
+      <h3>Existing competitions (${comps.length})</h3>
+      ${comps.length ? comps.map(c=>`
+        <div class="admin-list-row">
+          <div class="info"><h4>${esc(c.name)}</h4><p>${esc(c.scope)} · ${esc(c.type||'')}</p></div>
+          <div class="admin-list-actions">
+            <button class="btn btn-danger btn-sm" data-del="${c.id}" data-type="competitions">Delete</button>
+          </div>
+        </div>
+      `).join('') : '<p class="help-note">No competitions yet.</p>'}
+    </div>
+  `;
 }
 
-/* ============ RESEARCH ============ */
-function renderResearch(){
-  const items = load(KEYS.research, DEFAULT_RESEARCH);
+/* ============ TAB: PROGRAMS ============ */
+function renderProgramsTab(){
+  const progs = load(KEYS.programs, DEFAULT_PROGRAMS);
   return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add research section</h3>
-      <form id="formAdd" class="form-grid">
-        <input name="icon" placeholder="Icon (emoji)">
-        <input name="title" placeholder="Title" required>
-        <textarea name="desc" placeholder="Description"></textarea>
-        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+    <div class="card">
+      <h3>Add program</h3>
+      <form id="formPrograms" class="form-grid">
+        <input name="name" placeholder="Program name" required>
+        <select name="category"><option value="current">Current</option><option value="upcoming">Upcoming</option><option value="past">Past</option></select>
+        <select name="status"><option value="open">Open</option><option value="soon">Coming soon</option><option value="closed">Closed</option></select>
+        <input name="grade" placeholder="Grade range">
+        <input name="deadline" type="date">
+        <textarea name="desc" placeholder="Description" class="full-row"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add program</button>
       </form>
     </div>
-    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Research sections (${items.length})</h3>
-      ${items.map(r=>`<div class="admin-list-row"><div class="info"><h4>${r.icon||''} ${r.title}</h4><p>${r.desc||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${r.key}" data-type="research">Delete</button></div></div>`).join('')}
-    </div>`;
+    <div class="card">
+      <h3>Existing programs (${progs.length})</h3>
+      ${progs.map(p=>`
+        <div class="admin-list-row">
+          <div class="info"><h4>${esc(p.name)}</h4><p>${esc(p.category)} · ${esc(p.status)}</p></div>
+          <div class="admin-list-actions">
+            <button class="btn btn-danger btn-sm" data-del="${p.id}" data-type="programs">Delete</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 }
 
-/* ============ USERS ============ */
-function renderUsers(){
-  const items = load(KEYS.users, DEFAULT_USERS);
+/* ============ TAB: USERS ============ */
+function renderUsersTab(){
+  const users = load(KEYS.users, DEFAULT_USERS);
   return `
-    <div class="card" style="margin-bottom:20px;">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add admin</h3>
-      <form id="formAdd" class="form-grid">
+    <div class="card">
+      <h3>Add admin</h3>
+      <form id="formUsers" class="form-grid">
         <input name="username" placeholder="Username" required>
         <input name="password" placeholder="Password" required>
         <input name="name" placeholder="Display name" class="full-row">
-        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add admin</button>
       </form>
     </div>
-    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Admins (${items.length})</h3>
-      ${items.map(u=>`<div class="admin-list-row"><div class="info"><h4>${u.name||u.username}</h4><p>@${u.username}</p></div><div class="admin-list-actions">${items.length>1?`<button class="btn btn-danger btn-sm" data-del="${u.username}" data-type="users">Delete</button>`:''}</div></div>`).join('')}
-    </div>`;
+    <div class="card">
+      <h3>Existing admins (${users.length})</h3>
+      ${users.map(u=>`
+        <div class="admin-list-row">
+          <div class="info"><h4>${esc(u.name||u.username)}</h4><p>@${esc(u.username)}</p></div>
+          <div class="admin-list-actions">
+            ${users.length>1?`<button class="btn btn-danger btn-sm" data-del="${u.username}" data-type="users">Delete</button>`:''}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 }
 
-/* ============ SETTINGS ============ */
-function renderSettings(){
+/* ============ TAB: SETTINGS ============ */
+function renderSettingsTab(){
   const s = load(KEYS.settings, DEFAULT_SETTINGS);
   return `
     <div class="card">
-      <h3 style="font-size:1.05rem;margin-bottom:14px;">Site settings</h3>
-      <form id="formAdd" class="form-grid">
-        <input name="clubName" placeholder="Club name" value="${s.clubName||''}">
-        <input name="logo" placeholder="Logo URL" value="${s.logo||''}">
-        <input name="heroSubtitle" placeholder="Hero subtitle" value="${s.heroSubtitle||''}" class="full-row">
-        <textarea name="heroDesc" placeholder="Hero description" class="full-row">${s.heroDesc||''}</textarea>
-        <input name="fb" placeholder="Facebook URL" value="${s.fb||''}">
-        <input name="ig" placeholder="Instagram URL" value="${s.ig||''}">
-        <input name="tt" placeholder="TikTok URL" value="${s.tt||''}">
-        <input name="li" placeholder="LinkedIn URL" value="${s.li||''}">
-        <input name="yt" placeholder="YouTube URL" value="${s.yt||''}" class="full-row">
+      <h3>Site settings</h3>
+      <form id="formSettings" class="form-grid">
+        <input name="clubName" placeholder="Club name" value="${esc(s.clubName||'')}">
+        <input name="logo" placeholder="Logo URL" value="${esc(s.logo||'')}">
+        <input name="fb" placeholder="Facebook URL" value="${esc(s.fb||'')}">
+        <input name="ig" placeholder="Instagram URL" value="${esc(s.ig||'')}">
+        <input name="tt" placeholder="TikTok URL" value="${esc(s.tt||'')}">
+        <input name="li" placeholder="LinkedIn URL" value="${esc(s.li||'')}">
+        <input name="yt" placeholder="YouTube URL" value="${esc(s.yt||'')}" class="full-row">
         <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Save settings</button>
       </form>
-    </div>`;
+    </div>
+  `;
 }
 
-/* ============ BIND EVENTS ============ */
+/* ============ BIND ============ */
 function bindPanelEvents(){
-  const form = document.getElementById('formAdd');
+  const form = document.querySelector('#panel form');
   if(form) form.addEventListener('submit', e=>{
     e.preventDefault();
     const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
 
-    if(adminTab==='resources'){
-      const items = load(KEYS.resources, DEFAULT_RESOURCES);
-      items.push({id:genId('r'), ...data, date:new Date().toISOString().slice(0,10)});
-      save(KEYS.resources, items);
-    }
-    else if(adminTab==='competitions'){
-      const items = load(KEYS.competitions, DEFAULT_COMPS);
-      items.push({id:genId('c'), ...data});
-      save(KEYS.competitions, items);
-    }
-    else if(adminTab==='programs'){
-      const items = load(KEYS.programs, DEFAULT_PROGS);
-      items.push({id:genId('p'), ...data});
-      save(KEYS.programs, items);
-    }
-    else if(adminTab==='curriculum'){
+    if(adminTab==='curriculum'){
       const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
-      const grade = data.grade;
-      if(!curr[grade]) curr[grade] = [];
-      curr[grade].push({id:genId('g' + grade + '_'), name:data.name, desc:data.desc});
+      if(!curr[data.group]) curr[data.group] = {items:[]};
+      curr[data.group].items.push({id:genId('lo'), title:data.title});
       save(KEYS.curriculum, curr);
     }
-    else if(adminTab==='journey'){
-      const items = load(KEYS.journey, DEFAULT_JOURNEY);
-      items.push({id:genId('j'), unit:data.unit, title:data.title, desc:data.desc});
-      save(KEYS.journey, items);
+    else if(adminTab==='learning'){
+      const c = load(KEYS.learningContent, {});
+      if(!c[data.loId]) c[data.loId] = {videos:[],files:[],quizzes:[]};
+      if(!c[data.loId][data.kind]) c[data.loId][data.kind] = [];
+      c[data.loId][data.kind].push({title:data.title, url:data.url||'#'});
+      save(KEYS.learningContent, c);
     }
     else if(adminTab==='research'){
-      const items = load(KEYS.research, DEFAULT_RESEARCH);
-      const key = (data.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-');
-      items.push({key, icon:data.icon||'📄', title:data.title, desc:data.desc});
-      save(KEYS.research, items);
+      const topics = load(KEYS.researchTopics, DEFAULT_TOPICS);
+      const key = (data.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-') || genId('topic');
+      topics.push({key, icon:data.icon||'📄', title:data.title, desc:data.desc||''});
+      save(KEYS.researchTopics, topics);
+    }
+    else if(adminTab==='researchContent'){
+      const c = load(KEYS.researchContent, {});
+      if(!c[data.topicKey]) c[data.topicKey] = {sessions:[],files:[],tasks:[]};
+      if(!c[data.topicKey][data.kind]) c[data.topicKey][data.kind] = [];
+      c[data.topicKey][data.kind].push({title:data.title, url:data.url||'#'});
+      save(KEYS.researchContent, c);
+    }
+    else if(adminTab==='competitions'){
+      const comps = load(KEYS.competitions, []);
+      comps.push({id:genId('c'), ...data});
+      save(KEYS.competitions, comps);
+    }
+    else if(adminTab==='programs'){
+      const progs = load(KEYS.programs, DEFAULT_PROGRAMS);
+      progs.push({id:genId('p'), ...data});
+      save(KEYS.programs, progs);
     }
     else if(adminTab==='users'){
-      const items = load(KEYS.users, DEFAULT_USERS);
-      items.push({...data, role:'admin'});
-      save(KEYS.users, items);
+      const users = load(KEYS.users, DEFAULT_USERS);
+      users.push({...data, role:'admin'});
+      save(KEYS.users, users);
     }
     else if(adminTab==='settings'){
       save(KEYS.settings, data);
@@ -442,21 +671,42 @@ function bindPanelEvents(){
     paintPanel();
   });
 
-  document.querySelectorAll('[data-del]').forEach(b=> b.addEventListener('click', ()=>{
+  document.querySelectorAll('[data-del]').forEach(btn=> btn.addEventListener('click', ()=>{
     if(!confirm('Delete this item?')) return;
-    const type = b.dataset.type, id = b.dataset.del;
-    if(type==='resources'){ const items = load(KEYS.resources, DEFAULT_RESOURCES).filter(x=>x.id!==id); save(KEYS.resources, items); }
-    else if(type==='competitions'){ const items = load(KEYS.competitions, DEFAULT_COMPS).filter(x=>x.id!==id); save(KEYS.competitions, items); }
-    else if(type==='programs'){ const items = load(KEYS.programs, DEFAULT_PROGS).filter(x=>x.id!==id); save(KEYS.programs, items); }
-    else if(type==='curriculum'){
+    const id = btn.dataset.del;
+    const type = btn.dataset.type;
+
+    if(type==='curriculum'){
       const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
-      const grade = b.dataset.grade;
-      curr[grade] = (curr[grade]||[]).filter(x=>x.id!==id);
+      const g = btn.dataset.group;
+      curr[g].items = (curr[g].items||[]).filter(x=>x.id!==id);
       save(KEYS.curriculum, curr);
     }
-    else if(type==='journey'){ const items = load(KEYS.journey, DEFAULT_JOURNEY).filter(x=>(x.id||x.title)!==id); save(KEYS.journey, items); }
-    else if(type==='research'){ const items = load(KEYS.research, DEFAULT_RESEARCH).filter(x=>x.key!==id); save(KEYS.research, items); }
-    else if(type==='users'){ const items = load(KEYS.users, DEFAULT_USERS).filter(x=>x.username!==id); save(KEYS.users, items); }
+    else if(type==='learningContent'){
+      const c = load(KEYS.learningContent, {});
+      const lo = btn.dataset.lo, kind = btn.dataset.kind;
+      if(c[lo] && c[lo][kind]) c[lo][kind].splice(Number(id),1);
+      save(KEYS.learningContent, c);
+    }
+    else if(type==='researchTopics'){
+      const topics = load(KEYS.researchTopics, DEFAULT_TOPICS).filter(x=>x.key!==id);
+      save(KEYS.researchTopics, topics);
+    }
+    else if(type==='researchContent'){
+      const c = load(KEYS.researchContent, {});
+      const topic = btn.dataset.topic, kind = btn.dataset.kind;
+      if(c[topic] && c[topic][kind]) c[topic][kind].splice(Number(id),1);
+      save(KEYS.researchContent, c);
+    }
+    else if(type==='competitions'){
+      save(KEYS.competitions, load(KEYS.competitions, []).filter(x=>x.id!==id));
+    }
+    else if(type==='programs'){
+      save(KEYS.programs, load(KEYS.programs, DEFAULT_PROGRAMS).filter(x=>x.id!==id));
+    }
+    else if(type==='users'){
+      save(KEYS.users, load(KEYS.users, DEFAULT_USERS).filter(x=>x.username!==id));
+    }
     paintPanel();
   }));
 }

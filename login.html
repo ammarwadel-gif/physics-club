@@ -3,50 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Club — Sign in</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Sign in — BS Physics Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--teal-soft:#DCEBE8;--red:#9B3B34;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--maxw:1180px;}
+:root{
+  --bg:#311432;--bg-2:#3D1A42;--line:#4A2250;
+  --text:#E8E5EA;--text-soft:#B8A9BD;--white:#FFFFFF;
+  --amber:#C97A1F;--red:#C4453A;
+  --radius-s:4px;--radius-m:8px;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--maxw:1180px;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
-h1,h2{font-family:var(--serif);font-weight:600;}
+h2{font-family:var(--serif);font-weight:600;color:var(--white);}
+p{margin:0;}
 
-header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
-.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;}
-.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
-.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
-nav.primary{display:flex;gap:2px;flex-wrap:wrap;}
-nav.primary a{padding:8px 11px;font-size:0.88rem;font-weight:500;color:var(--ink-soft);}
-nav.primary a:hover{color:var(--ink);}
+header.site{position:sticky;top:0;z-index:100;background:rgba(49,20,50,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:72px;gap:12px;}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--white);}
+.brand img{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:contain;border:2px solid rgba(201,122,31,0.4);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.05em;color:var(--text-soft);margin-top:2px;text-transform:uppercase;}
+nav.primary{display:flex;gap:4px;flex-wrap:wrap;}
+nav.primary a{padding:9px 14px;font-size:0.9rem;font-weight:500;color:var(--text-soft);transition:all .15s;}
+nav.primary a:hover{color:var(--white);}
 @media (max-width:1080px){nav.primary{display:none;}}
 
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 68px);padding:40px 20px;}
-.login-card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:40px;max-width:440px;width:100%;}
-.login-card h2{font-size:1.5rem;margin-bottom:8px;}
-.login-card p.help{color:var(--ink-soft);font-size:0.88rem;margin-bottom:24px;}
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 72px);padding:40px 20px;}
+.login-card{
+  background:var(--bg-2);border:1px solid var(--line);
+  border-radius:var(--radius-m);padding:44px 40px;
+  max-width:440px;width:100%;
+}
+.login-card h2{font-size:1.6rem;margin-bottom:10px;}
+.help{color:var(--text-soft);font-size:0.9rem;margin-bottom:26px;}
 .login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-.login-field label{font-size:0.82rem;font-weight:600;}
-.login-field input{font-family:var(--sans);font-size:0.92rem;padding:11px 13px;border-radius:var(--radius-s);border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);}
-.login-field input:focus{border-color:var(--teal);outline:none;}
-.btn-primary{background:var(--ink);color:var(--paper);width:100%;padding:12px;border:none;border-radius:var(--radius-s);font-size:0.92rem;font-weight:600;cursor:pointer;font-family:inherit;}
-.btn-primary:hover{background:#2A3563;}
-.login-msg{font-size:0.85rem;padding:10px 12px;border-radius:var(--radius-s);margin-bottom:14px;display:none;}
-.login-msg.err{display:block;background:#FAEAE8;color:var(--red);border:1px solid var(--red);}
-.login-msg.ok{display:block;background:var(--teal-soft);color:var(--teal);border:1px solid var(--teal);}
-.login-help{font-size:0.78rem;color:var(--ink-faint);margin-top:18px;padding-top:16px;border-top:1px solid var(--line);}
+.login-field label{font-size:0.82rem;font-weight:600;color:var(--text);}
+.login-field input{padding:12px 14px;border-radius:var(--radius-s);border:1px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:0.95rem;}
+.login-field input:focus{outline:none;border-color:var(--amber);}
+.login-btn{width:100%;justify-content:center;padding:13px;font-size:0.95rem;background:var(--amber);color:#fff;border-radius:var(--radius-s);font-weight:600;transition:background .15s;}
+.login-btn:hover{background:#B06A15;}
+.login-msg{font-size:0.88rem;padding:11px 14px;border-radius:var(--radius-s);margin-bottom:14px;display:none;}
+.login-msg.err{display:block;background:rgba(196,69,58,0.15);color:#E8907C;border:1px solid var(--red);}
+.login-msg.ok{display:block;background:rgba(31,110,100,0.2);color:#7AD6C7;border:1px solid #1F6E64;}
+.login-note{font-size:0.78rem;color:var(--text-soft);margin-top:20px;padding-top:16px;border-top:1px solid var(--line);text-align:center;}
 
-footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+footer.site-footer{background:#240F26;color:var(--text-soft);padding:26px 0;text-align:center;font-size:0.82rem;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
 
 <header class="site">
   <div class="wrap nav-row">
-    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Academic ecosystem</small></span></a>
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="BS Physics Club" onerror="this.style.display='none'">
+      <span>BS Physics Club<small>Academic Ecosystem</small></span>
+    </a>
     <nav class="primary">
       <a href="index.html">Home</a>
       <a href="learning.html">Learning Hub</a>
@@ -67,15 +82,13 @@ footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:3
     <form id="loginForm">
       <div class="login-field"><label>Username</label><input type="text" name="username" required autocomplete="username"></div>
       <div class="login-field"><label>Password</label><input type="password" name="password" required autocomplete="current-password"></div>
-      <button type="submit" class="btn-primary">Sign in</button>
+      <button type="submit" class="login-btn">Sign in</button>
     </form>
-    <p class="login-help">Admin access is restricted to authorized personnel only. Contact the club management if you need credentials.</p>
+    <p class="login-note">Access restricted to authorized admins only.</p>
   </div>
 </div>
 
-<footer class="site-footer">
-  <div class="wrap">© <span id="year"></span> Physics Club.</div>
-</footer>
+<footer class="site-footer">© <span id="year"></span> BS Physics Club.</footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -96,13 +109,12 @@ document.getElementById('loginForm').addEventListener('submit', e=>{
   const fd = new FormData(e.target);
   const u = fd.get('username').trim();
   const p = fd.get('password');
-  const users = getUsers();
-  const user = users.find(x=>x.username===u && x.password===p);
+  const user = getUsers().find(x=>x.username===u && x.password===p);
   const msg = document.getElementById('loginMsg');
   if(user){
     sessionStorage.setItem('pc_session', JSON.stringify({username:user.username, name:user.name, role:user.role}));
     msg.className='login-msg ok'; msg.textContent='Signed in! Redirecting…';
-    setTimeout(()=>{ location.href = 'admin.html'; }, 600);
+    setTimeout(()=>{ location.href='admin.html'; }, 600);
   } else {
     msg.className='login-msg err'; msg.textContent='Invalid username or password.';
   }

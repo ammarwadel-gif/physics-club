@@ -3,72 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Club — Programs</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Programs — BS Physics Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--teal-soft:#DCEBE8;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--maxw:1180px;}
+:root{
+  --bg:#311432;--bg-2:#3D1A42;--line:#4A2250;
+  --text:#E8E5EA;--text-soft:#B8A9BD;--white:#FFFFFF;
+  --amber:#C97A1F;--teal:#1F6E64;
+  --radius-s:4px;--radius-m:8px;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+  --maxw:1180px;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:600;}
-@media (max-width:640px){body{background-size:40px 40px;}}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--white);}
+p{margin:0;}
 
-header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
-.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;flex:none;}
-.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
-.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
-nav.primary{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
-nav.primary a{padding:8px 11px;border-radius:var(--radius-s);font-size:0.88rem;font-weight:500;color:var(--ink-soft);transition:all .15s;white-space:nowrap;}
-nav.primary a:hover{background:var(--surface);color:var(--ink);}
-nav.primary a.active{color:var(--ink);background:var(--surface);box-shadow:inset 0 -2px 0 var(--amber);}
-.nav-right{display:flex;align-items:center;gap:8px;flex:none;}
-.user-chip{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:var(--ink);padding:6px 10px;background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius-s);}
+header.site{position:sticky;top:0;z-index:100;background:rgba(49,20,50,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:72px;gap:12px;}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--white);}
+.brand img{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:contain;border:2px solid rgba(201,122,31,0.4);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.05em;color:var(--text-soft);margin-top:2px;text-transform:uppercase;}
+nav.primary{display:flex;gap:4px;flex-wrap:wrap;}
+nav.primary a{padding:9px 14px;font-size:0.9rem;font-weight:500;color:var(--text-soft);transition:all .15s;}
+nav.primary a:hover{color:var(--white);}
+nav.primary a.active{color:var(--white);box-shadow:inset 0 -2px 0 var(--amber);}
+.user-chip{display:flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--amber);padding:7px 12px;background:rgba(201,122,31,0.15);border:1px solid var(--amber);border-radius:var(--radius-s);}
 @media (max-width:1080px){nav.primary{display:none;}}
 
-.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
-.detail-hero h1{font-size:2.1rem;margin-top:10px;}
-.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
-.breadcrumbs a:hover{color:var(--ink);text-decoration:underline;}
-.section-tight{padding:44px 0;}
+.page-hero{padding:50px 0 36px;border-bottom:1px solid var(--line);}
+.page-hero h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin-bottom:14px;}
+.page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:680px;}
+.breadcrumbs{font-size:0.85rem;color:var(--text-soft);margin-bottom:14px;}
+.breadcrumbs a:hover{color:var(--amber);}
+.breadcrumbs span{margin:0 8px;opacity:0.5;}
+
+.section{padding:50px 0;}
 .section-head{margin-bottom:26px;}
 .section-head h2{font-size:1.6rem;}
 
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-@media (max-width:760px){.grid-2{grid-template-columns:1fr;}}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media (max-width:860px){.grid-2{grid-template-columns:1fr;}}
 
-.opp-card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:22px;display:flex;flex-direction:column;gap:12px;transition:all .15s;}
-.opp-card:hover{border-color:var(--ink);box-shadow:0 4px 0 var(--amber);}
-.opp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
-.opp-card h3{font-size:1.1rem;}
-.opp-card p.desc{color:var(--ink-soft);font-size:0.9rem;}
-.meta-line{font-family:var(--mono);font-size:0.74rem;color:var(--ink-faint);display:flex;gap:14px;flex-wrap:wrap;}
-.opp-actions{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
+.prog-card{
+  background:var(--bg-2);border:1px solid var(--line);
+  border-radius:var(--radius-m);padding:26px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.prog-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--teal));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.prog-card:hover{border-color:var(--amber);transform:translateY(-4px);}
+.prog-card:hover::before{transform:scaleX(1);}
+.prog-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+.prog-card h3{font-size:1.15rem;line-height:1.35;flex:1;}
+.prog-card p.desc{color:var(--text-soft);font-size:0.9rem;line-height:1.7;flex:1;}
+.meta-line{
+  font-family:var(--mono);font-size:0.74rem;color:var(--text-soft);
+  display:flex;gap:14px;flex-wrap:wrap;
+}
+.meta-line span{display:inline-flex;align-items:center;gap:5px;}
+.prog-actions{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
 
-.pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.68rem;padding:3px 10px;border-radius:20px;font-weight:500;}
-.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
-.pill-open{background:var(--teal-soft);color:var(--teal);}
-.pill-soon{background:var(--amber-soft);color:var(--amber);}
-.pill-closed{background:#EAEAE4;color:#8A8D82;}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--radius-s);font-size:0.85rem;font-weight:600;border:1px solid transparent;transition:all .15s;cursor:pointer;font-family:inherit;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--radius-s);font-size:0.85rem;font-weight:600;transition:all .15s;}
 .btn-amber{background:var(--amber);color:#fff;}
 .btn-amber:hover{background:#B06A15;}
-.btn-outline{background:transparent;color:var(--ink);border-color:var(--ink);}
-.btn-outline:hover{background:var(--ink);color:var(--paper);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--line);}
+.btn-outline:hover{border-color:var(--amber);color:var(--white);}
 .btn-sm{padding:8px 14px;font-size:0.8rem;}
-.empty-state{padding:44px 20px;text-align:center;color:var(--ink-faint);border:1px dashed var(--line-strong);border-radius:var(--radius-m);background:var(--surface);}
 
-footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:0.7rem;padding:4px 12px;
+  border-radius:20px;font-weight:600;white-space:nowrap;letter-spacing:0.04em;
+}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+.pill-open{background:rgba(76,175,80,0.15);color:#7AD17E;}
+.pill-soon{background:rgba(255,193,7,0.15);color:#FFC107;}
+.pill-closed{background:rgba(154,141,130,0.15);color:#9A8D82;}
+
+.empty-state{
+  padding:44px 24px;text-align:center;color:var(--text-soft);
+  border:1px dashed var(--line);border-radius:var(--radius-m);
+  background:rgba(61,26,66,0.4);grid-column:1/-1;font-size:0.9rem;
+}
+
+footer.site-footer{background:#240F26;color:var(--text-soft);padding:30px 0;text-align:center;font-size:0.82rem;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
 
 <header class="site">
   <div class="wrap nav-row">
-    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Academic ecosystem</small></span></a>
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="BS Physics Club" onerror="this.style.display='none'">
+      <span>BS Physics Club<small>Academic Ecosystem</small></span>
+    </a>
     <nav class="primary">
       <a href="index.html">Home</a>
       <a href="learning.html">Learning Hub</a>
@@ -78,40 +114,60 @@ footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:3
       <a href="about.html">About</a>
       <a href="profile.html">Profile</a>
     </nav>
-    <div class="nav-right"><a href="login.html" id="adminChip" class="user-chip" style="display:none;"><i class="fas fa-user-shield"></i> <span id="adminName">Admin</span></a></div>
+    <div class="nav-right">
+      <a href="login.html" id="adminChip" class="user-chip" style="display:none;">
+        <i class="fas fa-user-shield"></i> <span id="adminName">Admin</span>
+      </a>
+    </div>
   </div>
 </header>
 
-<section class="detail-hero"><div class="wrap">
-  <div class="breadcrumbs"><a href="index.html">Home</a> / Programs</div>
+<section class="page-hero"><div class="wrap">
+  <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Programs</div>
   <h1>Programs</h1>
-  <p style="color:var(--ink-soft);max-width:620px;margin-top:14px;">All academic programs organized by Physics Club.</p>
+  <p>All academic programs organized by BS Physics Club — from competition prep to research mentorship.</p>
 </div></section>
 
-<section class="section-tight">
-  <div class="wrap"><div class="section-head"><h2>Current programs</h2></div><div class="grid-2" id="currentProgs"></div></div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>Current programs</h2></div>
+    <div class="grid-2" id="currentProgs"></div>
+  </div>
 </section>
 
-<section class="section-tight" style="background:var(--surface);border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);">
-  <div class="wrap"><div class="section-head"><h2>Upcoming programs</h2></div><div class="grid-2" id="upcomingProgs"></div></div>
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head"><h2>Upcoming programs</h2></div>
+    <div class="grid-2" id="upcomingProgs"></div>
+  </div>
 </section>
 
-<section class="section-tight">
-  <div class="wrap"><div class="section-head"><h2>Past programs</h2></div><div class="grid-2" id="pastProgs"></div></div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>Past programs</h2></div>
+    <div class="grid-2" id="pastProgs"></div>
+  </div>
 </section>
 
-<footer class="site-footer">© <span id="year"></span> Physics Club.</footer>
+<footer class="site-footer">© <span id="year"></span> BS Physics Club.</footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-try{const s=sessionStorage.getItem('pc_session');if(s){const u=JSON.parse(s);if(u&&u.role==='admin'){document.getElementById('adminChip').style.display='flex';document.getElementById('adminChip').href='admin.html';document.getElementById('adminName').textContent=u.name||u.username;}}}catch(e){}
+try{
+  const s = sessionStorage.getItem('pc_session');
+  if(s){const u=JSON.parse(s); if(u && u.role==='admin'){
+    document.getElementById('adminChip').style.display='flex';
+    document.getElementById('adminChip').href='admin.html';
+    document.getElementById('adminName').textContent = u.name || u.username;
+  }}
+}catch(e){}
 
 const DEFAULT_PROGRAMS = [
-  {id:'p1', name:'International Physics Competition Prep Track', status:'open', category:'current', grade:'11–12', deadline:'2026-10-05', desc:'A season-long training track for olympiad preparation.'},
-  {id:'p2', name:'Physics Research Program', status:'open', category:'current', grade:'10–12', deadline:'2026-10-20', desc:'A guided introduction to research methodology.'},
-  {id:'p3', name:'Intro to Computational Physics Workshops', status:'open', category:'current', grade:'9–12', deadline:'2026-09-30', desc:'A three-part workshop series on simulation and data analysis.'},
-  {id:'p4', name:'Research Mentorship Program', status:'soon', category:'upcoming', grade:'11–12', deadline:'2027-01-15', desc:'Pairs students with senior members for one-on-one mentorship.'},
-  {id:'p5', name:'Summer Research Initiative 2026', status:'closed', category:'past', grade:'10–12', deadline:'2026-04-15', desc:'A past summer program pairing students with experimental projects.'},
+  {id:'p1', name:'Competition Prep Track', status:'open', category:'current', grade:'11–12', deadline:'2026-10-05', desc:'Season-long olympiad training.'},
+  {id:'p2', name:'Physics Research Program', status:'open', category:'current', grade:'10–12', deadline:'2026-10-20', desc:'Introduction to research methodology.'},
+  {id:'p3', name:'Intro to Computational Physics Workshops', status:'open', category:'current', grade:'9–12', deadline:'2026-09-30', desc:'Workshop series on simulation and data analysis.'},
+  {id:'p4', name:'Research Mentorship Program', status:'soon', category:'upcoming', grade:'11–12', deadline:'2027-01-15', desc:'One-on-one mentorship with senior members.'},
+  {id:'p5', name:'Summer Research Initiative 2026', status:'closed', category:'past', grade:'10–12', deadline:'2026-04-15', desc:'Past summer program.'},
 ];
 
 function load(key, fb){
@@ -126,15 +182,19 @@ function statusPill(s){
   const [cls,label] = map[s] || map.closed;
   return `<span class="pill ${cls}">${label}</span>`;
 }
+function esc(s){ return (s==null?'':s.toString()).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
 function card(p){
   return `
-  <div class="opp-card">
-    <div class="opp-top"><h3>${p.name}</h3>${statusPill(p.status)}</div>
-    <p class="desc">${p.desc||''}</p>
-    <div class="meta-line"><span>Grade: ${p.grade||''}</span><span>Deadline: ${fmtDate(p.deadline)}</span></div>
-    <div class="opp-actions">
-      <a href="#" class="btn btn-outline btn-sm">Learn more</a>
-      ${p.status!=='closed' ? '<a href="#" class="btn btn-amber btn-sm">Apply now</a>' : ''}
+  <div class="prog-card">
+    <div class="prog-top"><h3>${esc(p.name)}</h3>${statusPill(p.status)}</div>
+    <p class="desc">${esc(p.desc||'')}</p>
+    <div class="meta-line">
+      <span><i class="fas fa-graduation-cap"></i> Grade ${esc(p.grade||'')}</span>
+      <span><i class="fas fa-calendar"></i> Deadline: ${fmtDate(p.deadline)}</span>
+    </div>
+    <div class="prog-actions">
+      ${p.status!=='closed' ? `<a href="#" class="btn btn-amber btn-sm">Apply now →</a>` : `<span style="font-size:0.82rem;color:var(--text-soft);">Applications closed</span>`}
     </div>
   </div>`;
 }
@@ -142,7 +202,7 @@ function card(p){
 ['current','upcoming','past'].forEach(cat=>{
   const el = document.getElementById(cat+'Progs');
   const list = progs.filter(p=>p.category===cat);
-  el.innerHTML = list.length ? list.map(card).join('') : `<div class="empty-state" style="grid-column:1/-1;">No ${cat} programs right now.</div>`;
+  el.innerHTML = list.length ? list.map(card).join('') : `<div class="empty-state">No ${cat} programs right now.</div>`;
 });
 </script>
 </body>
