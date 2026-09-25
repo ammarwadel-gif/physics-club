@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Club — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--red:#9B3B34;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--maxw:1180px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+h1,h2,h3{font-family:var(--serif);font-weight:600;}
+
+header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;}
+.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
+nav.primary{display:flex;gap:2px;flex-wrap:wrap;}
+nav.primary a{padding:8px 11px;font-size:0.88rem;font-weight:500;color:var(--ink-soft);}
+nav.primary a:hover{color:var(--ink);}
+nav.primary a.active{color:var(--ink);background:var(--surface);box-shadow:inset 0 -2px 0 var(--amber);}
+.user-chip{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;padding:6px 10px;background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius-s);}
+@media (max-width:1080px){nav.primary{display:none;}}
+
+.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
+.detail-hero h1{font-size:2.1rem;margin-top:10px;}
+.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
+.section{padding:60px 0;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media (max-width:760px){.grid-3{grid-template-columns:1fr;}}
+.card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:22px;}
+.card h3{font-size:1.1rem;margin-bottom:10px;}
+.card p{color:var(--ink-soft);font-size:0.92rem;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--radius-s);font-size:0.85rem;font-weight:600;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;font-family:inherit;transition:all .15s;}
+.btn:hover{background:var(--ink);color:var(--paper);}
+.btn-primary{background:var(--ink);color:var(--paper);}
+.btn-danger{color:var(--red);border-color:var(--red);}
+.btn-danger:hover{background:var(--red);color:#fff;}
+.empty-state{padding:44px 20px;text-align:center;color:var(--ink-faint);border:1px dashed var(--line-strong);border-radius:var(--radius-m);background:var(--surface);}
+
+footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Academic ecosystem</small></span></a>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="learning.html">Learning Hub</a>
+      <a href="research.html">Research</a>
+      <a href="competitions.html">Competitions</a>
+      <a href="programs.html">Programs</a>
+      <a href="about.html">About</a>
+      <a href="profile.html" class="active">Profile</a>
+    </nav>
+    <div class="nav-right"><a href="login.html" id="adminChip" class="user-chip" style="display:none;"><i class="fas fa-user-shield"></i> <span id="adminName">Admin</span></a></div>
+  </div>
+</header>
+
+<section class="detail-hero"><div class="wrap">
+  <div class="breadcrumbs"><a href="index.html">Home</a> / Profile</div>
+  <h1 id="profileTitle">Your profile</h1>
+  <p id="profileSubtitle" style="color:var(--ink-soft);margin-top:10px;"></p>
+</div></section>
+
+<section class="section"><div class="wrap" id="profileContent"></div></section>
+
+<footer class="site-footer">© <span id="year"></span> Physics Club.</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+let currentUser = null;
+try{ const s = sessionStorage.getItem('pc_session'); if(s) currentUser = JSON.parse(s); }catch(e){}
+
+if(currentUser){
+  document.getElementById('profileTitle').textContent = currentUser.name || currentUser.username;
+  document.getElementById('profileSubtitle').innerHTML = 'Signed in as <strong>'+currentUser.username+'</strong> · Role: <strong>'+currentUser.role+'</strong>';
+  document.getElementById('adminChip').style.display='flex';
+  document.getElementById('adminChip').href='admin.html';
+  document.getElementById('adminName').textContent = currentUser.name || currentUser.username;
+
+  const totalChecked = (()=>{
+    try{ const cl = JSON.parse(localStorage.getItem('pc_checklist')||'{}'); return Object.values(cl).reduce((a,g)=>a+Object.values(g).filter(Boolean).length,0); }catch(e){return 0;}
+  })();
+
+  document.getElementById('profileContent').innerHTML = `
+    <div class="grid-3">
+      <div class="card"><h3>📊 Curriculum</h3><p>You've completed <strong>${totalChecked}</strong> units.</p><a href="learning.html" class="btn" style="margin-top:14px;">Continue →</a></div>
+      <div class="card"><h3>🏆 Competitions</h3><p>Browse and apply.</p><a href="competitions.html" class="btn" style="margin-top:14px;">View →</a></div>
+      <div class="card"><h3>🎓 Programs</h3><p>Apply to seasonal programs.</p><a href="programs.html" class="btn" style="margin-top:14px;">Explore →</a></div>
+    </div>
+    <div style="margin-top:24px;text-align:right;">
+      ${currentUser.role==='admin' ? '<a href="admin.html" class="btn btn-primary">Open Admin Panel →</a>' : ''}
+      <button id="logoutBtn" class="btn btn-danger" style="margin-left:8px;">Log out</button>
+    </div>`;
+  document.getElementById('logoutBtn').addEventListener('click', ()=>{
+    sessionStorage.removeItem('pc_session'); location.href='index.html';
+  });
+} else {
+  document.getElementById('profileContent').innerHTML = `
+    <div class="empty-state">
+      <h3 style="font-size:1.3rem;margin-bottom:10px;">You're browsing as a guest</h3>
+      <p style="margin-bottom:20px;">Sign in as an admin to access the admin panel.</p>
+      <a href="login.html" class="btn btn-primary">Sign in</a>
+    </div>`;
+}
+</script>
+</body>
+</html>

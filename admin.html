@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Club — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--teal-soft:#DCEBE8;--red:#9B3B34;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--maxw:1180px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;}
+
+header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;}
+.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
+nav.primary{display:flex;gap:2px;flex-wrap:wrap;}
+nav.primary a{padding:8px 11px;font-size:0.88rem;font-weight:500;color:var(--ink-soft);}
+nav.primary a:hover{color:var(--ink);}
+@media (max-width:1080px){nav.primary{display:none;}}
+
+.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
+.detail-hero h1{font-size:2.1rem;margin-top:10px;}
+.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
+.section{padding:44px 0;}
+.admin-banner{background:var(--amber-soft);border:1px solid var(--amber);color:#7A4B12;padding:12px 16px;border-radius:var(--radius-m);font-size:0.85rem;margin-bottom:24px;}
+.admin-tabs{display:flex;gap:6px;border-bottom:1px solid var(--line-strong);margin-bottom:26px;flex-wrap:wrap;}
+.admin-tab{padding:10px 14px;font-size:0.85rem;font-weight:600;color:var(--ink-soft);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;}
+.admin-tab.active{color:var(--ink);border-bottom-color:var(--amber);}
+.card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:22px;}
+.admin-list-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
+.admin-list-row:last-child{border-bottom:none;}
+.admin-list-row .info h4{font-size:0.93rem;}
+.admin-list-row .info p{font-size:0.78rem;color:var(--ink-faint);margin-top:3px;}
+.admin-list-actions{display:flex;gap:8px;flex:none;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:var(--radius-s);font-size:0.83rem;font-weight:600;border:1px solid transparent;transition:all .15s;cursor:pointer;font-family:inherit;}
+.btn-primary{background:var(--ink);color:var(--paper);}
+.btn-primary:hover{background:#2A3563;}
+.btn-outline{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn-outline:hover{background:var(--ink);color:var(--paper);}
+.btn-danger{background:transparent;color:var(--red);border-color:var(--red);}
+.btn-danger:hover{background:var(--red);color:#fff;}
+.btn-sm{padding:7px 12px;font-size:0.78rem;}
+
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 68px);padding:40px 20px;}
+.login-card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:40px;max-width:440px;width:100%;}
+.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.login-field label{font-size:0.82rem;font-weight:600;}
+.login-field input{font-family:var(--sans);font-size:0.92rem;padding:11px 13px;border-radius:var(--radius-s);border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);}
+.login-msg{font-size:0.85rem;padding:10px 12px;border-radius:var(--radius-s);margin-bottom:14px;display:none;}
+.login-msg.err{display:block;background:#FAEAE8;color:var(--red);border:1px solid var(--red);}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.form-grid.full{grid-template-columns:1fr;}
+.form-grid input,.form-grid select,.form-grid textarea{padding:10px;border:1px solid var(--line-strong);border-radius:var(--radius-s);font-family:var(--sans);font-size:0.88rem;background:var(--paper);color:var(--ink);}
+.form-grid textarea{grid-column:1/-1;min-height:60px;font-family:var(--mono);font-size:0.82rem;}
+.form-grid .full-row{grid-column:1/-1;}
+@media (max-width:640px){.form-grid{grid-template-columns:1fr;}}
+
+footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Admin Panel</small></span></a>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="learning.html">Learning Hub</a>
+      <a href="research.html">Research</a>
+      <a href="competitions.html">Competitions</a>
+      <a href="programs.html">Programs</a>
+      <a href="about.html">About</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </div>
+</header>
+
+<div id="app"></div>
+
+<footer class="site-footer">© <span id="year"></span> Physics Club — Admin Panel</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const KEYS = { users:'pc_users', session:'pc_session', resources:'pc_resources', competitions:'pc_competitions', programs:'pc_programs', curriculum:'pc_curriculum', journey:'pc_journey', research:'pc_research', settings:'pc_settings' };
+
+const DEFAULT_USERS = [
+  { username:'admin', password:'physics2026', name:'Main Admin', role:'admin' },
+  { username:'mazen', password:'mazen123', name:'Mazen', role:'admin' },
+  { username:'ahmed', password:'ahmed456', name:'Ahmed', role:'admin' },
+];
+const DEFAULT_RESOURCES = [
+  {id:'r1', title:"Newton's Laws", unit:'Mechanics', grade:10, date:'2026-08-28', desc:'Foundational walkthrough.'},
+  {id:'r2', title:'Circuits & Kirchhoff', unit:'Electricity', grade:11, date:'2026-08-20', desc:'Notes on networks.'},
+];
+const DEFAULT_COMPS = [
+  {id:'c1', name:'International Physics Olympiad', scope:'International', type:'Olympiad', grade:'11–12', difficulty:'Advanced', status:'open', deadline:'2027-01-15'},
+];
+const DEFAULT_PROGS = [
+  {id:'p1', name:'Competition Prep Track', status:'open', category:'current', grade:'11–12', deadline:'2026-10-05', desc:'Season-long training.'},
+];
+const DEFAULT_CURRICULUM = {
+  10: [
+    {id:'g10_1', name:'Mechanics', desc:'Kinematics, Newton\'s laws.'},
+    {id:'g10_2', name:'Waves & Sound', desc:'Wave properties.'},
+    {id:'g10_3', name:'Electricity Basics', desc:'Ohm\'s law.'},
+    {id:'g10_4', name:'Optics', desc:'Reflection & refraction.'},
+    {id:'g10_5', name:'Heat & Thermodynamics', desc:'Temperature.'},
+  ],
+  11: [
+    {id:'g11_1', name:'Electromagnetism', desc:'Fields.'},
+    {id:'g11_2', name:'Modern Physics', desc:'Photoelectric effect.'},
+    {id:'g11_3', name:'Quantum Mechanics Intro', desc:'Wave-particle duality.'},
+    {id:'g11_4', name:'Mathematical Physics', desc:'Vectors.'},
+    {id:'g11_5', name:'Advanced Optics', desc:'Interference.'},
+  ]
+};
+const DEFAULT_JOURNEY = [
+  {unit:'Olympiad Prep', title:'Mechanics Olympiad Problems', desc:'Advanced.'},
+  {unit:'Astrophysics', title:'Stellar Physics Intro', desc:'Stars.'},
+];
+const DEFAULT_RESEARCH = [
+  {key:'academic-writing', icon:'✍️', title:'Academic & Scientific Writing', desc:'Structure, abstracts, citations.'},
+  {key:'intro-research', icon:'🔎', title:'Introduction to Research', desc:'What research is.'},
+  {key:'literature-review', icon:'📚', title:'Literature Review', desc:'Find and read papers.'},
+  {key:'data-analysis', icon:'📊', title:'Data Analysis', desc:'Python, MATLAB, Excel.'},
+  {key:'experimental-methods', icon:'🧪', title:'Experimental Methods', desc:'Labs, safety, errors.'},
+];
+const DEFAULT_SETTINGS = {
+  clubName:'Physics Club',
+  heroSubtitle:'Explore. Learn. Research. Compete.',
+  heroDesc:'A structured academic ecosystem built by students.',
+  logo:'logo.jpeg',
+  fb:'#', ig:'#', tt:'#', li:'#', yt:'#'
+};
+
+function load(key, fb){
+  try{ const raw = localStorage.getItem(key); if(raw) return JSON.parse(raw); }catch(e){}
+  localStorage.setItem(key, JSON.stringify(fb));
+  return JSON.parse(JSON.stringify(fb));
+}
+function save(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+function genId(p){ return p+'_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+let currentUser = null;
+try{ const s = sessionStorage.getItem(KEYS.session); if(s) currentUser = JSON.parse(s); }catch(e){}
+
+/* ============ LOGIN ============ */
+function renderLogin(){
+  document.getElementById('app').innerHTML = `
+    <div class="login-wrap"><div class="login-card">
+      <h2 style="font-size:1.5rem;margin-bottom:8px;">Admin sign in</h2>
+      <p style="color:var(--ink-soft);font-size:0.88rem;margin-bottom:24px;">Enter your credentials to access the admin panel.</p>
+      <div class="login-msg" id="msg"></div>
+      <form id="loginForm">
+        <div class="login-field"><label>Username</label><input type="text" name="username" required></div>
+        <div class="login-field"><label>Password</label><input type="password" name="password" required></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Sign in</button>
+      </form>
+    </div></div>`;
+  document.getElementById('loginForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const users = load(KEYS.users, DEFAULT_USERS);
+    const u = users.find(x=>x.username===fd.get('username').trim() && x.password===fd.get('password'));
+    if(u){
+      currentUser = {username:u.username, name:u.name, role:u.role};
+      sessionStorage.setItem(KEYS.session, JSON.stringify(currentUser));
+      renderAdmin();
+    } else {
+      const m = document.getElementById('msg');
+      m.className='login-msg err'; m.textContent='Invalid credentials.';
+    }
+  });
+}
+
+/* ============ ADMIN LAYOUT ============ */
+let adminTab = 'resources';
+
+function renderAdmin(){
+  document.getElementById('app').innerHTML = `
+    <section class="detail-hero"><div class="wrap">
+      <div class="breadcrumbs"><a href="index.html">Home</a> / Admin</div>
+      <h1>Admin Panel</h1>
+      <p style="color:var(--ink-soft);margin-top:10px;">Welcome, ${currentUser.name||currentUser.username}. Full control over all content.</p>
+      <button class="btn btn-danger btn-sm" id="logoutBtn" style="margin-top:14px;">Log out</button>
+    </div></section>
+    <section class="section"><div class="wrap">
+      <div class="admin-banner">You're signed in as admin. Changes save to this browser's localStorage.</div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="resources">📚 Resources</button>
+        <button class="admin-tab" data-tab="competitions">🏆 Competitions</button>
+        <button class="admin-tab" data-tab="programs">🎓 Programs</button>
+        <button class="admin-tab" data-tab="curriculum">📘 Curriculum</button>
+        <button class="admin-tab" data-tab="journey">🚀 Journey</button>
+        <button class="admin-tab" data-tab="research">🔬 Research</button>
+        <button class="admin-tab" data-tab="users">👤 Admins</button>
+        <button class="admin-tab" data-tab="settings">⚙️ Settings</button>
+      </div>
+      <div id="panel"></div>
+    </div></section>`;
+  document.getElementById('logoutBtn').addEventListener('click', ()=>{
+    sessionStorage.removeItem(KEYS.session); currentUser = null; location.href='index.html';
+  });
+  document.querySelectorAll('.admin-tab').forEach(t=> t.addEventListener('click', ()=>{
+    adminTab = t.dataset.tab;
+    document.querySelectorAll('.admin-tab').forEach(x=>x.classList.toggle('active', x.dataset.tab===adminTab));
+    paintPanel();
+  }));
+  paintPanel();
+}
+
+function paintPanel(){
+  const p = document.getElementById('panel');
+  if(adminTab==='resources') p.innerHTML = renderResources();
+  else if(adminTab==='competitions') p.innerHTML = renderComps();
+  else if(adminTab==='programs') p.innerHTML = renderProgs();
+  else if(adminTab==='curriculum') p.innerHTML = renderCurriculum();
+  else if(adminTab==='journey') p.innerHTML = renderJourney();
+  else if(adminTab==='research') p.innerHTML = renderResearch();
+  else if(adminTab==='users') p.innerHTML = renderUsers();
+  else if(adminTab==='settings') p.innerHTML = renderSettings();
+  bindPanelEvents();
+}
+
+/* ============ RESOURCES ============ */
+function renderResources(){
+  const items = load(KEYS.resources, DEFAULT_RESOURCES);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add resource</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="title" placeholder="Title" required>
+        <input name="unit" placeholder="Unit / topic">
+        <input name="grade" placeholder="Grade (10/11/12)">
+        <input name="type" placeholder="Type (Notes/Video)">
+        <textarea name="desc" placeholder="Short description"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Resources (${items.length})</h3>
+      ${items.map(r=>`<div class="admin-list-row"><div class="info"><h4>${r.title}</h4><p>${r.unit||''} · Grade ${r.grade||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${r.id}" data-type="resources">Delete</button></div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ COMPETITIONS ============ */
+function renderComps(){
+  const items = load(KEYS.competitions, DEFAULT_COMPS);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add competition</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="name" placeholder="Name" required>
+        <select name="scope"><option>International</option><option>National</option><option>Local</option></select>
+        <input name="type" placeholder="Type (Olympiad/Exam)">
+        <input name="grade" placeholder="Grade">
+        <input name="deadline" type="date">
+        <select name="status"><option value="open">Open</option><option value="soon">Soon</option><option value="closed">Closed</option></select>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Competitions (${items.length})</h3>
+      ${items.map(c=>`<div class="admin-list-row"><div class="info"><h4>${c.name}</h4><p>${c.scope} · ${c.type||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${c.id}" data-type="competitions">Delete</button></div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ PROGRAMS ============ */
+function renderProgs(){
+  const items = load(KEYS.programs, DEFAULT_PROGS);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add program</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="name" placeholder="Name" required>
+        <select name="category"><option value="current">Current</option><option value="upcoming">Upcoming</option><option value="past">Past</option></select>
+        <input name="grade" placeholder="Grade">
+        <input name="deadline" type="date">
+        <textarea name="desc" placeholder="Description"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Programs (${items.length})</h3>
+      ${items.map(p=>`<div class="admin-list-row"><div class="info"><h4>${p.name}</h4><p>${p.category}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${p.id}" data-type="programs">Delete</button></div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ CURRICULUM ============ */
+function renderCurriculum(){
+  const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add curriculum item</h3>
+      <form id="formAdd" class="form-grid">
+        <select name="grade"><option value="10">Grade 10</option><option value="11">Grade 11</option></select>
+        <input name="name" placeholder="Unit name" required>
+        <textarea name="desc" placeholder="Short description"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1.05rem;margin-bottom:8px;">Grade 10 (${(curr[10]||[]).length})</h3>
+      ${(curr[10]||[]).map(it=>`<div class="admin-list-row"><div class="info"><h4>${it.name}</h4><p>${it.desc||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${it.id}" data-type="curriculum" data-grade="10">Delete</button></div></div>`).join('')}
+    </div>
+    <div class="card" style="margin-top:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:8px;">Grade 11 (${(curr[11]||[]).length})</h3>
+      ${(curr[11]||[]).map(it=>`<div class="admin-list-row"><div class="info"><h4>${it.name}</h4><p>${it.desc||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${it.id}" data-type="curriculum" data-grade="11">Delete</button></div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ JOURNEY ============ */
+function renderJourney(){
+  const items = load(KEYS.journey, DEFAULT_JOURNEY);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add journey item</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="unit" placeholder="Unit / category" required>
+        <input name="title" placeholder="Title" required>
+        <textarea name="desc" placeholder="Description"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Journey items (${items.length})</h3>
+      ${items.map(it=>`<div class="admin-list-row"><div class="info"><h4>${it.title}</h4><p>${it.unit}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${it.id||it.title}" data-type="journey">Delete</button></div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ RESEARCH ============ */
+function renderResearch(){
+  const items = load(KEYS.research, DEFAULT_RESEARCH);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add research section</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="icon" placeholder="Icon (emoji)">
+        <input name="title" placeholder="Title" required>
+        <textarea name="desc" placeholder="Description"></textarea>
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Research sections (${items.length})</h3>
+      ${items.map(r=>`<div class="admin-list-row"><div class="info"><h4>${r.icon||''} ${r.title}</h4><p>${r.desc||''}</p></div><div class="admin-list-actions"><button class="btn btn-danger btn-sm" data-del="${r.key}" data-type="research">Delete</button></div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ USERS ============ */
+function renderUsers(){
+  const items = load(KEYS.users, DEFAULT_USERS);
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Add admin</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="username" placeholder="Username" required>
+        <input name="password" placeholder="Password" required>
+        <input name="name" placeholder="Display name" class="full-row">
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Add</button>
+      </form>
+    </div>
+    <div class="card"><h3 style="font-size:1.05rem;margin-bottom:8px;">Admins (${items.length})</h3>
+      ${items.map(u=>`<div class="admin-list-row"><div class="info"><h4>${u.name||u.username}</h4><p>@${u.username}</p></div><div class="admin-list-actions">${items.length>1?`<button class="btn btn-danger btn-sm" data-del="${u.username}" data-type="users">Delete</button>`:''}</div></div>`).join('')}
+    </div>`;
+}
+
+/* ============ SETTINGS ============ */
+function renderSettings(){
+  const s = load(KEYS.settings, DEFAULT_SETTINGS);
+  return `
+    <div class="card">
+      <h3 style="font-size:1.05rem;margin-bottom:14px;">Site settings</h3>
+      <form id="formAdd" class="form-grid">
+        <input name="clubName" placeholder="Club name" value="${s.clubName||''}">
+        <input name="logo" placeholder="Logo URL" value="${s.logo||''}">
+        <input name="heroSubtitle" placeholder="Hero subtitle" value="${s.heroSubtitle||''}" class="full-row">
+        <textarea name="heroDesc" placeholder="Hero description" class="full-row">${s.heroDesc||''}</textarea>
+        <input name="fb" placeholder="Facebook URL" value="${s.fb||''}">
+        <input name="ig" placeholder="Instagram URL" value="${s.ig||''}">
+        <input name="tt" placeholder="TikTok URL" value="${s.tt||''}">
+        <input name="li" placeholder="LinkedIn URL" value="${s.li||''}">
+        <input name="yt" placeholder="YouTube URL" value="${s.yt||''}" class="full-row">
+        <button type="submit" class="btn btn-primary full-row" style="justify-content:center;">Save settings</button>
+      </form>
+    </div>`;
+}
+
+/* ============ BIND EVENTS ============ */
+function bindPanelEvents(){
+  const form = document.getElementById('formAdd');
+  if(form) form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
+    if(adminTab==='resources'){
+      const items = load(KEYS.resources, DEFAULT_RESOURCES);
+      items.push({id:genId('r'), ...data, date:new Date().toISOString().slice(0,10)});
+      save(KEYS.resources, items);
+    }
+    else if(adminTab==='competitions'){
+      const items = load(KEYS.competitions, DEFAULT_COMPS);
+      items.push({id:genId('c'), ...data});
+      save(KEYS.competitions, items);
+    }
+    else if(adminTab==='programs'){
+      const items = load(KEYS.programs, DEFAULT_PROGS);
+      items.push({id:genId('p'), ...data});
+      save(KEYS.programs, items);
+    }
+    else if(adminTab==='curriculum'){
+      const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
+      const grade = data.grade;
+      if(!curr[grade]) curr[grade] = [];
+      curr[grade].push({id:genId('g' + grade + '_'), name:data.name, desc:data.desc});
+      save(KEYS.curriculum, curr);
+    }
+    else if(adminTab==='journey'){
+      const items = load(KEYS.journey, DEFAULT_JOURNEY);
+      items.push({id:genId('j'), unit:data.unit, title:data.title, desc:data.desc});
+      save(KEYS.journey, items);
+    }
+    else if(adminTab==='research'){
+      const items = load(KEYS.research, DEFAULT_RESEARCH);
+      const key = (data.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      items.push({key, icon:data.icon||'📄', title:data.title, desc:data.desc});
+      save(KEYS.research, items);
+    }
+    else if(adminTab==='users'){
+      const items = load(KEYS.users, DEFAULT_USERS);
+      items.push({...data, role:'admin'});
+      save(KEYS.users, items);
+    }
+    else if(adminTab==='settings'){
+      save(KEYS.settings, data);
+    }
+    paintPanel();
+  });
+
+  document.querySelectorAll('[data-del]').forEach(b=> b.addEventListener('click', ()=>{
+    if(!confirm('Delete this item?')) return;
+    const type = b.dataset.type, id = b.dataset.del;
+    if(type==='resources'){ const items = load(KEYS.resources, DEFAULT_RESOURCES).filter(x=>x.id!==id); save(KEYS.resources, items); }
+    else if(type==='competitions'){ const items = load(KEYS.competitions, DEFAULT_COMPS).filter(x=>x.id!==id); save(KEYS.competitions, items); }
+    else if(type==='programs'){ const items = load(KEYS.programs, DEFAULT_PROGS).filter(x=>x.id!==id); save(KEYS.programs, items); }
+    else if(type==='curriculum'){
+      const curr = load(KEYS.curriculum, DEFAULT_CURRICULUM);
+      const grade = b.dataset.grade;
+      curr[grade] = (curr[grade]||[]).filter(x=>x.id!==id);
+      save(KEYS.curriculum, curr);
+    }
+    else if(type==='journey'){ const items = load(KEYS.journey, DEFAULT_JOURNEY).filter(x=>(x.id||x.title)!==id); save(KEYS.journey, items); }
+    else if(type==='research'){ const items = load(KEYS.research, DEFAULT_RESEARCH).filter(x=>x.key!==id); save(KEYS.research, items); }
+    else if(type==='users'){ const items = load(KEYS.users, DEFAULT_USERS).filter(x=>x.username!==id); save(KEYS.users, items); }
+    paintPanel();
+  }));
+}
+
+if(currentUser && currentUser.role==='admin'){ renderAdmin(); } else { renderLogin(); }
+</script>
+</body>
+</html>

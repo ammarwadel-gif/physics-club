@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Club — Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--teal-soft:#DCEBE8;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--maxw:1180px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;}
+@media (max-width:640px){body{background-size:40px 40px;}}
+
+header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;flex:none;}
+.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
+nav.primary{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
+nav.primary a{padding:8px 11px;border-radius:var(--radius-s);font-size:0.88rem;font-weight:500;color:var(--ink-soft);transition:all .15s;white-space:nowrap;}
+nav.primary a:hover{background:var(--surface);color:var(--ink);}
+nav.primary a.active{color:var(--ink);background:var(--surface);box-shadow:inset 0 -2px 0 var(--amber);}
+.nav-right{display:flex;align-items:center;gap:8px;flex:none;}
+.user-chip{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:var(--ink);padding:6px 10px;background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius-s);}
+@media (max-width:1080px){nav.primary{display:none;}}
+
+.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
+.detail-hero h1{font-size:2.1rem;margin-top:10px;}
+.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
+.breadcrumbs a:hover{color:var(--ink);text-decoration:underline;}
+.section-tight{padding:44px 0;}
+
+.research-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+.research-card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:26px;display:flex;flex-direction:column;gap:12px;transition:all .15s;cursor:pointer;text-decoration:none;}
+.research-card:hover{border-color:var(--ink);box-shadow:0 4px 0 var(--amber);transform:translateY(-3px);}
+.research-card .icon{font-size:2rem;}
+.research-card h3{font-size:1.18rem;}
+.research-card p{color:var(--ink-soft);font-size:0.9rem;flex:1;}
+.research-card .go{font-size:0.85rem;font-weight:600;}
+
+.section-detail{display:none;}
+.section-detail.active{display:block;}
+.section-back{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--ink-soft);margin-bottom:18px;cursor:pointer;}
+.section-back:hover{color:var(--ink);}
+
+.files-list{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;}
+.file-item{background:var(--surface);border:1px solid var(--line-strong);padding:12px 18px;border-radius:var(--radius-m);display:flex;align-items:center;gap:10px;font-size:0.9rem;transition:all .15s;}
+.file-item:hover{border-color:var(--ink);}
+.file-item i{color:var(--teal);}
+.file-item.amber i{color:var(--amber);}
+
+footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Academic ecosystem</small></span></a>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="learning.html">Learning Hub</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="competitions.html">Competitions</a>
+      <a href="programs.html">Programs</a>
+      <a href="about.html">About</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <div class="nav-right"><a href="login.html" id="adminChip" class="user-chip" style="display:none;"><i class="fas fa-user-shield"></i> <span id="adminName">Admin</span></a></div>
+  </div>
+</header>
+
+<section class="detail-hero"><div class="wrap">
+  <div class="breadcrumbs"><a href="index.html">Home</a> / Research</div>
+  <h1 id="heroTitle">Research Hub</h1>
+  <p style="color:var(--ink-soft);max-width:620px;margin-top:14px;" id="heroDesc">Pick a topic below to explore sessions, materials, and files.</p>
+</div></section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div id="researchList" class="research-grid"></div>
+    <div id="researchDetail" class="section-detail"></div>
+  </div>
+</section>
+
+<footer class="site-footer">© <span id="year"></span> Physics Club.</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+try{const s=sessionStorage.getItem('pc_session');if(s){const u=JSON.parse(s);if(u&&u.role==='admin'){document.getElementById('adminChip').style.display='flex';document.getElementById('adminChip').href='admin.html';document.getElementById('adminName').textContent=u.name||u.username;}}}catch(e){}
+
+const DEFAULT_SECTIONS = [
+  { key:'academic-writing', title:'Academic & Scientific Writing', icon:'✍️', desc:'Learn how to structure papers, abstracts, citations, and academic prose.',
+    objectives:['Understand IMRaD structure','Write a clean abstract','Cite sources correctly'],
+    sessions:[{label:'Session 1: Introduction to Scientific Writing',type:'video'},{label:'Session 2: Structuring a Research Paper',type:'video'},{label:'Session 3: Citations & Referencing',type:'video'}],
+    files:[{label:'Paper Template.pdf',type:'pdf'},{label:'Abstract Guide.docx',type:'doc'},{label:'Citation Styles Guide',type:'link'}] },
+  { key:'intro-research', title:'Introduction to Research', icon:'🔎', desc:'What research is, how to formulate a question, and how to think like a researcher.',
+    objectives:['Define a research question','Understand research ethics','Plan a small investigation'],
+    sessions:[{label:'Session 1: What is Research?',type:'video'},{label:'Session 2: Formulating Questions',type:'video'}],
+    files:[{label:'Research Ethics Handout.pdf',type:'pdf'},{label:'Question Framework.docx',type:'doc'}] },
+  { key:'literature-review', title:'Literature Review', icon:'📚', desc:'How to find, read, and synthesize prior research effectively.',
+    objectives:['Search academic databases','Read papers efficiently','Synthesize findings'],
+    sessions:[{label:'Session 1: Searching Techniques',type:'video'},{label:'Session 2: Reading Scientific Papers',type:'video'}],
+    files:[{label:'Literature Review Sample.pdf',type:'pdf'},{label:'Useful Databases',type:'link'}] },
+  { key:'data-analysis', title:'Data Analysis', icon:'📊', desc:'Tools and techniques for analyzing experimental data (Python, MATLAB, Excel).',
+    objectives:['Clean and visualize data','Fit curves and interpret them','Report uncertainty'],
+    sessions:[{label:'Session 1: Python Basics',type:'video'},{label:'Session 2: Data Visualization',type:'video'},{label:'Session 3: Curve Fitting',type:'video'}],
+    files:[{label:'Python Scripts',type:'code'},{label:'Dataset Samples',type:'data'},{label:'Excel Templates',type:'excel'}] },
+  { key:'experimental-methods', title:'Experimental Methods', icon:'🧪', desc:'Lab equipment, safety protocols, measurement techniques, and error analysis.',
+    objectives:['Follow lab safety','Use measurement tools','Perform error analysis'],
+    sessions:[{label:'Session 1: Lab Safety',type:'video'},{label:'Session 2: Using Measurement Tools',type:'video'},{label:'Session 3: Error Analysis',type:'video'}],
+    files:[{label:'Lab Manual',type:'flask'},{label:'Safety Checklist',type:'check'},{label:'Experiment Reports',type:'pdf'}] },
+];
+
+const ICON_MAP = { video:'fas fa-video', pdf:'fas fa-file-pdf', doc:'fas fa-file-word', link:'fas fa-link', code:'fas fa-code', data:'fas fa-database', excel:'fas fa-file-excel', flask:'fas fa-flask', check:'fas fa-check-circle' };
+
+function load(key, fb){
+  try{ const raw = localStorage.getItem(key); if(raw) return JSON.parse(raw); }catch(e){}
+  return fb;
+}
+const SECTIONS = load('pc_research', DEFAULT_SECTIONS);
+
+function showList(){
+  document.getElementById('heroTitle').textContent = 'Research Hub';
+  document.getElementById('heroDesc').textContent = 'Pick a topic below to explore sessions, materials, and files.';
+  document.getElementById('researchDetail').classList.remove('active');
+  const list = document.getElementById('researchList');
+  list.style.display = 'grid';
+  list.innerHTML = SECTIONS.map(s=>`
+    <a href="#" class="research-card" data-key="${s.key}">
+      <div class="icon">${s.icon||'📄'}</div>
+      <h3>${s.title}</h3>
+      <p>${s.desc||''}</p>
+      <span class="go">Open section →</span>
+    </a>
+  `).join('');
+  document.querySelectorAll('[data-key]').forEach(card=> card.addEventListener('click', e=>{
+    e.preventDefault(); showDetail(card.dataset.key);
+  }));
+}
+
+function showDetail(key){
+  const s = SECTIONS.find(x=>x.key===key);
+  if(!s) return;
+  document.getElementById('heroTitle').textContent = s.title;
+  document.getElementById('heroDesc').textContent = s.desc || '';
+  document.getElementById('researchList').style.display = 'none';
+  const detail = document.getElementById('researchDetail');
+  detail.classList.add('active');
+  const objectives = s.objectives || [];
+  const sessions = s.sessions || [];
+  const files = s.files || [];
+  detail.innerHTML = `
+    <span class="section-back" id="backBtn">← Back to all sections</span>
+    ${objectives.length ? `<h2 style="font-size:1.3rem;margin-bottom:14px;">Learning objectives</h2>
+    <ul style="padding-left:20px;color:var(--ink-soft);margin-bottom:28px;">${objectives.map(o=>`<li>${o}</li>`).join('')}</ul>` : ''}
+    ${sessions.length ? `<h2 style="font-size:1.3rem;margin-bottom:14px;">Sessions</h2>
+    <div class="files-list">${sessions.map(se=>`<a href="#" class="file-item"><i class="${ICON_MAP[se.type]||'fas fa-play'}"></i> ${se.label}</a>`).join('')}</div>` : ''}
+    ${files.length ? `<h2 style="font-size:1.3rem;margin-bottom:14px;">Materials & Files</h2>
+    <div class="files-list">${files.map(f=>`<a href="#" class="file-item amber"><i class="${ICON_MAP[f.type]||'fas fa-file'}"></i> ${f.label}</a>`).join('')}</div>` : ''}
+  `;
+  document.getElementById('backBtn').addEventListener('click', showList);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+showList();
+</script>
+</body>
+</html>

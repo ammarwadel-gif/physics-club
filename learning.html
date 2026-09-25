@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Club — Learning Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--paper:#F1F2EE;--surface:#FFFFFF;--ink:#1B2440;--ink-soft:#525A78;--ink-faint:#848CA6;--line:#DBDCD4;--line-strong:#C2C4B9;--amber:#C97A1F;--amber-soft:#F3E2C8;--teal:#1F6E64;--teal-soft:#DCEBE8;--radius-s:3px;--radius-m:6px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;--maxw:1180px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-attachment:fixed;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;}
+
+header.site{position:sticky;top:0;z-index:100;background:rgba(241,242,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.2rem;}
+.brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;border:1px solid var(--line-strong);}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:0.6rem;color:var(--ink-faint);margin-top:1px;}
+nav.primary{display:flex;gap:2px;flex-wrap:wrap;}
+nav.primary a{padding:8px 11px;font-size:0.88rem;font-weight:500;color:var(--ink-soft);}
+nav.primary a:hover{color:var(--ink);}
+nav.primary a.active{color:var(--ink);background:var(--surface);box-shadow:inset 0 -2px 0 var(--amber);}
+.user-chip{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;padding:6px 10px;background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius-s);}
+@media (max-width:1080px){nav.primary{display:none;}}
+
+.detail-hero{padding:40px 0 28px;border-bottom:1px solid var(--line-strong);}
+.detail-hero h1{font-size:2.1rem;margin-top:10px;}
+.breadcrumbs{font-size:0.82rem;color:var(--ink-faint);}
+.section-tight{padding:44px 0;}
+.scope-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;background:var(--surface);padding:8px;border:1px solid var(--line-strong);border-radius:var(--radius-m);}
+.scope-tab{padding:10px 20px;font-size:0.9rem;font-weight:600;color:var(--ink-soft);border-radius:var(--radius-s);cursor:pointer;transition:all .15s;border:none;background:transparent;font-family:inherit;}
+.scope-tab.active{background:var(--ink);color:var(--paper);}
+.scope-tab:hover:not(.active){background:var(--paper);color:var(--ink);}
+
+.grade-selector{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:36px;text-align:center;max-width:540px;margin:0 auto;}
+.grade-selector h3{font-size:1.4rem;margin-bottom:10px;}
+.grade-selector p{color:var(--ink-soft);font-size:0.92rem;margin-bottom:24px;}
+.grade-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.grade-btn{padding:16px 40px;font-size:1.05rem;font-weight:600;border-radius:var(--radius-s);border:2px solid var(--line-strong);background:var(--paper);color:var(--ink);cursor:pointer;transition:all .15s;font-family:inherit;}
+.grade-btn:hover{border-color:var(--ink);}
+.grade-badge{display:inline-block;font-family:var(--mono);font-size:0.7rem;padding:3px 10px;border-radius:20px;background:var(--amber-soft);color:var(--amber);margin-bottom:14px;font-weight:600;}
+.checklist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+.checklist-item{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:18px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:all .15s;}
+.checklist-item:hover{border-color:var(--ink);}
+.checklist-item.done{background:var(--teal-soft);border-color:var(--teal);}
+.check-box{flex:none;width:24px;height:24px;border:2px solid var(--line-strong);border-radius:4px;display:flex;align-items:center;justify-content:center;background:var(--paper);margin-top:2px;}
+.checklist-item.done .check-box{background:var(--teal);border-color:var(--teal);}
+.checklist-item.done .check-box::after{content:'✓';color:#fff;font-weight:700;font-size:0.95rem;}
+.checklist-info h4{font-size:1.02rem;margin-bottom:4px;}
+.checklist-info p{font-size:0.84rem;color:var(--ink-soft);}
+.checklist-item.done .checklist-info h4{text-decoration:line-through;color:var(--ink-soft);}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--radius-s);font-size:0.85rem;font-weight:600;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;font-family:inherit;}
+.btn:hover{background:var(--ink);color:var(--paper);}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media (max-width:940px){.grid-3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.grid-3{grid-template-columns:1fr;}}
+.resource-card{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:18px;display:flex;flex-direction:column;gap:8px;}
+.tag{font-family:var(--mono);font-size:0.68rem;color:var(--teal);background:var(--teal-soft);padding:2px 7px;border-radius:3px;display:inline-block;width:fit-content;}
+.resource-card h4{font-size:0.98rem;}
+.resource-card .desc{color:var(--ink-soft);font-size:0.85rem;}
+.resource-card .foot{font-size:0.76rem;color:var(--ink-faint);margin-top:4px;}
+
+footer.site-footer{background:var(--ink);color:#C9CEE0;margin-top:50px;padding:30px 0;text-align:center;font-size:0.82rem;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="index.html" class="brand"><img src="logo.jpeg" alt="Physics Club" onerror="this.style.display='none'"><span>Physics Club<small>Academic ecosystem</small></span></a>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="learning.html" class="active">Learning Hub</a>
+      <a href="research.html">Research</a>
+      <a href="competitions.html">Competitions</a>
+      <a href="programs.html">Programs</a>
+      <a href="about.html">About</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <div class="nav-right"><a href="login.html" id="adminChip" class="user-chip" style="display:none;"><i class="fas fa-user-shield"></i> <span id="adminName">Admin</span></a></div>
+  </div>
+</header>
+
+<section class="detail-hero"><div class="wrap">
+  <div class="breadcrumbs"><a href="index.html">Home</a> / Learning Hub</div>
+  <h1>Learning Hub</h1>
+  <p style="color:var(--ink-soft);max-width:620px;margin-top:14px;">Structured physics resources organized by grade and unit.</p>
+</div></section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="scope-tabs">
+      <button class="scope-tab active" data-tab="curriculum">📘 Your Curriculum</button>
+      <button class="scope-tab" data-tab="journey">🚀 Learning Journey</button>
+    </div>
+    <div id="learningContent"></div>
+  </div>
+</section>
+
+<footer class="site-footer">© <span id="year"></span> Physics Club.</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+try{const s=sessionStorage.getItem('pc_session');if(s){const u=JSON.parse(s);if(u&&u.role==='admin'){document.getElementById('adminChip').style.display='flex';document.getElementById('adminChip').href='admin.html';document.getElementById('adminName').textContent=u.name||u.username;}}}catch(e){}
+
+function load(key, fb){
+  try{ const raw = localStorage.getItem(key); if(raw) return JSON.parse(raw); }catch(e){}
+  return fb;
+}
+const DEFAULT_CURRICULUM = {
+  10: [
+    {id:'g10_1', name:'Mechanics', desc:'Kinematics, Newton\'s laws, work, energy.'},
+    {id:'g10_2', name:'Waves & Sound', desc:'Wave properties, sound, resonance.'},
+    {id:'g10_3', name:'Electricity Basics', desc:'Ohm\'s law, circuits, networks.'},
+    {id:'g10_4', name:'Optics', desc:'Reflection, refraction, lenses.'},
+    {id:'g10_5', name:'Heat & Thermodynamics', desc:'Temperature, heat transfer.'},
+  ],
+  11: [
+    {id:'g11_1', name:'Electromagnetism', desc:'Electric and magnetic fields.'},
+    {id:'g11_2', name:'Modern Physics', desc:'Photoelectric effect, atomic models.'},
+    {id:'g11_3', name:'Quantum Mechanics Intro', desc:'Wave-particle duality.'},
+    {id:'g11_4', name:'Mathematical Physics', desc:'Vectors and calculus applications.'},
+    {id:'g11_5', name:'Advanced Optics', desc:'Interference, diffraction.'},
+  ]
+};
+const DEFAULT_JOURNEY = [
+  {unit:'Olympiad Prep', title:'Mechanics Olympiad Problems', desc:'Advanced problems.'},
+  {unit:'Astrophysics', title:'Stellar Physics Intro', desc:'How stars form.'},
+  {unit:'Computational', title:'Python Simulations', desc:'Simulate physics.'},
+  {unit:'Relativity', title:'Special Relativity', desc:'Time dilation.'},
+];
+
+const CURRICULUM = load('pc_curriculum', DEFAULT_CURRICULUM);
+const JOURNEY = load('pc_journey', DEFAULT_JOURNEY);
+
+let currentGrade = null;
+let learningTab = 'curriculum';
+
+function getUserKey(){
+  try{ const s = sessionStorage.getItem('pc_session'); if(s){ const u = JSON.parse(s); return u.username; } }catch(e){}
+  return 'guest';
+}
+function getChecklist(){ try{ return JSON.parse(localStorage.getItem('pc_checklist')||'{}'); }catch(e){ return {}; } }
+function saveChecklist(cl){ localStorage.setItem('pc_checklist', JSON.stringify(cl)); }
+function getGradeKey(g){ return getUserKey() + '_g' + g; }
+
+function paint(){
+  const c = document.getElementById('learningContent');
+  document.querySelectorAll('.scope-tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===learningTab));
+  if(learningTab==='curriculum'){ c.innerHTML = renderCurriculum(); bindCurriculum(); }
+  else { c.innerHTML = renderJourney(); }
+}
+
+function renderCurriculum(){
+  if(!currentGrade){
+    return `<div class="grade-selector">
+      <h3>Which grade are you in?</h3>
+      <p>We'll show you a checklist of physics units. Your progress is saved on this device.</p>
+      <div class="grade-buttons">
+        <button class="grade-btn" data-grade="10">Grade 10</button>
+        <button class="grade-btn" data-grade="11">Grade 11</button>
+      </div>
+    </div>`;
+  }
+  const items = CURRICULUM[currentGrade] || [];
+  const cl = getChecklist();
+  const state = cl[getGradeKey(currentGrade)] || {};
+  const doneCount = items.filter(it=>state[it.id]).length;
+  return `
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+    <div>
+      <span class="grade-badge">Grade ${currentGrade}</span>
+      <h2 style="font-size:1.5rem;margin-top:6px;">Your Curriculum Checklist</h2>
+      <p style="color:var(--ink-soft);font-size:0.9rem;margin-top:4px;">${doneCount} of ${items.length} done.</p>
+    </div>
+    <button class="btn" id="changeGrade">Change grade</button>
+  </div>
+  <div class="checklist-grid">
+    ${items.map(it=>`
+      <label class="checklist-item ${state[it.id]?'done':''}" data-item="${it.id}">
+        <span class="check-box"></span>
+        <div class="checklist-info"><h4>${it.name}</h4><p>${it.desc||''}</p></div>
+      </label>
+    `).join('')}
+  </div>`;
+}
+
+function bindCurriculum(){
+  document.querySelectorAll('[data-grade]').forEach(btn=> btn.addEventListener('click', ()=>{ currentGrade = Number(btn.dataset.grade); paint(); }));
+  const ch = document.getElementById('changeGrade');
+  if(ch) ch.addEventListener('click', ()=>{ currentGrade = null; paint(); });
+  document.querySelectorAll('[data-item]').forEach(el=> el.addEventListener('click', e=>{
+    e.preventDefault();
+    const cl = getChecklist();
+    const key = getGradeKey(currentGrade);
+    if(!cl[key]) cl[key] = {};
+    cl[key][el.dataset.item] = !cl[key][el.dataset.item];
+    saveChecklist(cl); paint();
+  }));
+}
+
+function renderJourney(){
+  return `
+  <div style="margin-bottom:22px;">
+    <h2 style="font-size:1.5rem;">Learning Journey</h2>
+    <p style="color:var(--ink-soft);font-size:0.9rem;margin-top:6px;">Resources beyond the standard curriculum.</p>
+  </div>
+  <div class="grid-3">
+    ${JOURNEY.map(r=>`
+      <div class="resource-card">
+        <span class="tag">${r.unit}</span>
+        <h4>${r.title}</h4>
+        <p class="desc">${r.desc}</p>
+        <div class="foot">Grade ${r.grade||''}</div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+document.querySelectorAll('.scope-tab').forEach(t=> t.addEventListener('click', ()=>{ learningTab = t.dataset.tab; paint(); }));
+paint();
+</script>
+</body>
+</html>
