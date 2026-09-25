@@ -3,17 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BS Physics Club — Programs</title>
+<title>BS Physics Club — Books</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{
-  --bg:#311432;--bg-2:#3D1A42;--line:#4A2250;
-  --text:#E8E5EA;--text-soft:#B8A9BD;--white:#FFFFFF;
-  --amber:#C97A1F;
-  --radius-s:4px;--radius-m:8px;
-  --serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--maxw:1240px;
-}
+:root{--bg:#311432;--bg-2:#3D1A42;--line:#4A2250;--text:#E8E5EA;--text-soft:#B8A9BD;--white:#FFFFFF;--amber:#C97A1F;--radius-s:4px;--radius-m:8px;--serif:'Source Serif 4',Georgia,serif;--sans:'IBM Plex Sans',sans-serif;--maxw:1240px;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
@@ -40,35 +34,20 @@ nav.primary a.active{background:var(--bg-2);color:var(--white);box-shadow:inset 
 .breadcrumbs a:hover{color:var(--amber);}
 .breadcrumbs span{margin:0 8px;opacity:0.5;}
 
-.section{padding:50px 0;}
-.section-head{margin-bottom:26px;}
-.section-head h2{font-size:1.6rem;}
+.section{padding:60px 0;}
+.section-head{margin-bottom:30px;}
+.section-head h2{font-size:1.8rem;}
 
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-@media (max-width:860px){.grid-2{grid-template-columns:1fr;}}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;}
+.book-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-m);overflow:hidden;transition:all .2s;display:flex;flex-direction:column;}
+.book-card:hover{border-color:var(--amber);transform:translateY(-4px);}
+.book-cover{aspect-ratio:3/4;background:linear-gradient(135deg,#4A2250,var(--bg));display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--amber);opacity:0.5;border-bottom:1px solid var(--line);}
+.book-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.book-body h3{font-size:1.05rem;line-height:1.35;}
+.book-body p{color:var(--text-soft);font-size:0.86rem;flex:1;}
+.book-meta{font-family:monospace;font-size:0.72rem;color:var(--text-soft);display:flex;justify-content:space-between;gap:10px;margin-top:6px;}
 
-.prog-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;display:flex;flex-direction:column;gap:14px;transition:all .2s;position:relative;overflow:hidden;}
-.prog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),#1F6E64);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
-.prog-card:hover{border-color:var(--amber);transform:translateY(-4px);}
-.prog-card:hover::before{transform:scaleX(1);}
-.prog-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
-.prog-card h3{font-size:1.15rem;line-height:1.35;flex:1;}
-.prog-card p.desc{color:var(--text-soft);font-size:0.9rem;line-height:1.7;flex:1;}
-.meta-line{font-family:monospace;font-size:0.74rem;color:var(--text-soft);display:flex;gap:14px;flex-wrap:wrap;}
-.meta-line span{display:inline-flex;align-items:center;gap:5px;}
-.prog-actions{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--radius-s);font-size:0.85rem;font-weight:600;transition:all .15s;cursor:pointer;}
-.btn-amber{background:var(--amber);color:#fff;}
-.btn-amber:hover{background:#B06A15;}
-
-.pill{display:inline-flex;align-items:center;gap:6px;font-family:monospace;font-size:0.7rem;padding:4px 12px;border-radius:20px;font-weight:600;white-space:nowrap;}
-.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
-.pill-open{background:rgba(76,175,80,0.15);color:#7AD17E;}
-.pill-soon{background:rgba(255,193,7,0.15);color:#FFC107;}
-.pill-closed{background:rgba(154,141,130,0.15);color:#9A8D82;}
-
-.empty-state{padding:44px 24px;text-align:center;color:var(--text-soft);border:1px dashed var(--line);border-radius:var(--radius-m);background:rgba(61,26,66,0.4);grid-column:1/-1;font-size:0.9rem;}
+.empty-state{padding:60px 24px;text-align:center;color:var(--text-soft);border:1px dashed var(--line);border-radius:var(--radius-m);background:rgba(61,26,66,0.4);grid-column:1/-1;}
 
 footer.site-footer{background:#240F26;color:var(--text-soft);padding:50px 0 26px;border-top:1px solid var(--line);}
 footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;}
@@ -94,9 +73,9 @@ footer .fbottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22p
       <a href="learning.html">Learning Hub</a>
       <a href="research.html">Research</a>
       <a href="competitions.html">Competitions</a>
-      <a href="programs.html" class="active">Programs</a>
+      <a href="programs.html">Programs</a>
       <a href="magazine.html">Magazine</a>
-      <a href="books.html">Books</a>
+      <a href="books.html" class="active">Books</a>
       <a href="about.html">About</a>
       <a href="profile.html">Profile</a>
     </nav>
@@ -108,15 +87,16 @@ footer .fbottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22p
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Programs</div>
-    <h1>Programs</h1>
-    <p>All academic programs organized by BS Physics Club — from competition prep to research mentorship.</p>
+    <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Books</div>
+    <h1>Books</h1>
+    <p>Curated books and reading recommendations to deepen your understanding of physics at every level.</p>
   </div>
 </section>
 
-<section class="section"><div class="wrap"><div class="section-head"><h2>Current programs</h2></div><div class="grid-2" id="currentProgs"></div></div></section>
-<section class="section" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);"><div class="wrap"><div class="section-head"><h2>Upcoming programs</h2></div><div class="grid-2" id="upcomingProgs"></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head"><h2>Past programs</h2></div><div class="grid-2" id="pastProgs"></div></div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><h2>Recommended reading</h2></div>
+  <div class="books-grid" id="bookList"></div>
+</div></section>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -141,42 +121,26 @@ try{
   }}
 }catch(e){}
 
-const DEFAULT_PROGRAMS = [
-  {id:'p1', name:'Competition Prep Track', status:'open', category:'current', grade:'11–12', deadline:'2026-10-05', desc:'Season-long olympiad training.'},
-  {id:'p2', name:'Physics Research Program', status:'open', category:'current', grade:'10–12', deadline:'2026-10-20', desc:'Introduction to research methodology.'},
-  {id:'p3', name:'Intro to Computational Physics Workshops', status:'open', category:'current', grade:'9–12', deadline:'2026-09-30', desc:'Workshop series on simulation and data analysis.'},
-  {id:'p4', name:'Research Mentorship Program', status:'soon', category:'upcoming', grade:'11–12', deadline:'2027-01-15', desc:'One-on-one mentorship with senior members.'},
-  {id:'p5', name:'Summer Research Initiative 2026', status:'closed', category:'past', grade:'10–12', deadline:'2026-04-15', desc:'Past summer program.'},
+const DEFAULT_BOOKS = [
+  {id:'b1', title:'Conceptual Physics', author:'Paul G. Hewitt', desc:'A classic introduction to physics concepts through clear explanations and real-world examples.', year:'2014'},
+  {id:'b2', title:'The Feynman Lectures on Physics', author:'Richard P. Feynman', desc:'A legendary three-volume series covering the full spectrum of undergraduate physics.', year:'1964'},
+  {id:'b3', title:'University Physics', author:'Young & Freedman', desc:'A comprehensive textbook covering mechanics, thermodynamics, electromagnetism, and optics.', year:'2020'},
+  {id:'b4', title:'Six Easy Pieces', author:'Richard P. Feynman', desc:'Six of the most accessible lectures from the legendary Feynman Lectures series.', year:'1994'},
 ];
-
 function load(key, fb){ try{ const raw=localStorage.getItem(key); if(raw) return JSON.parse(raw); }catch(e){} return fb; }
-const progs = load('pc_programs', DEFAULT_PROGRAMS);
-
-function fmtDate(d){ if(!d) return ''; try{ return new Date(d+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); }catch(e){ return d; } }
-function statusPill(s){
-  const map = {open:['pill-open','Open'], soon:['pill-soon','Coming soon'], closed:['pill-closed','Closed']};
-  const [cls,label] = map[s] || map.closed;
-  return `<span class="pill ${cls}">${label}</span>`;
-}
+const books = load('pc_books', DEFAULT_BOOKS);
 function esc(s){ return (s==null?'':s.toString()).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
-function card(p){
-  return `<div class="prog-card">
-    <div class="prog-top"><h3>${esc(p.name)}</h3>${statusPill(p.status)}</div>
-    <p class="desc">${esc(p.desc||'')}</p>
-    <div class="meta-line">
-      <span><i class="fas fa-graduation-cap"></i> Grade ${esc(p.grade||'')}</span>
-      <span><i class="fas fa-calendar"></i> Deadline: ${fmtDate(p.deadline)}</span>
+document.getElementById('bookList').innerHTML = books.length ? books.map(b=>`
+  <div class="book-card">
+    <div class="book-cover"><i class="fas fa-book"></i></div>
+    <div class="book-body">
+      <h3>${esc(b.title)}</h3>
+      <p>${esc(b.desc||'')}</p>
+      <div class="book-meta"><span>${esc(b.author||'')}</span><span>${esc(b.year||'')}</span></div>
     </div>
-    <div class="prog-actions">${p.status!=='closed' ? `<a href="#" class="btn btn-amber">Apply now →</a>` : `<span style="font-size:0.82rem;color:var(--text-soft);">Applications closed</span>`}</div>
-  </div>`;
-}
-
-['current','upcoming','past'].forEach(cat=>{
-  const el = document.getElementById(cat+'Progs');
-  const list = progs.filter(p=>p.category===cat);
-  el.innerHTML = list.length ? list.map(card).join('') : `<div class="empty-state">No ${cat} programs right now.</div>`;
-});
+  </div>
+`).join('') : `<div class="empty-state">No books recommended yet.</div>`;
 </script>
 </body>
 </html>
